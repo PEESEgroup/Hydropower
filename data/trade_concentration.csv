@@ -1,0 +1,13 @@
+scenario,bloc,export_HHI,export_gini,top_exporter,top_exporter_share,n_exporters,total_cross_region_delivered_mw
+A,china,0.367382,0.378861,china_cc,0.465098,4,22111.745
+A,europe,0.126875,0.589586,austria,0.202687,19,11573.885
+A,india,0.503931,0.044335,india_south,0.544335,2,1686.282
+A,north_america,0.163559,0.486495,canada_bc,0.276143,11,11171.436
+A,south_america,0.0,0.0,none,0.0,0,0
+A,southeast_asia,0.370971,0.175865,indonesia,0.443464,3,2340.312
+B,china,0.367324,0.379027,china_cc,0.466332,4,22078.618
+B,europe,0.127259,0.597057,austria,0.203045,19,11640.602
+B,india,0.503801,0.043594,india_south,0.543594,2,1683.395
+B,north_america,0.161156,0.477032,canada_bc,0.275905,11,11178.615
+B,south_america,0.0,0.0,none,0.0,0,0
+B,southeast_asia,0.370971,0.175865,indonesia,0.443464,3,2340.312

@@ -1,0 +1,930 @@
+{
+  "verify": [
+    {
+      "technology": "Existing hydropower",
+      "checks": [
+        {
+          "dimension": "tech_maturity",
+          "our_value": 1,
+          "authoritative_value": "Mature, ~century-old commercial technology; 1,412 GW installed globally (2023); 'backbone of low-carbon electricity, providing almost half of it worldwide today' (IEA Hydropower Special Market Report). Effectively TRL 11/fully commercial.",
+          "primary_source": {
+            "name": "IEA, Hydropower Special Market Report (Executive Summary)",
+            "url": "https://www.iea.org/reports/hydropower-special-market-report/executive-summary"
+          },
+          "url_resolves": true,
+          "source_is_primary": true,
+          "consistent_with_our_value": true,
+          "flag": ""
+        },
+        {
+          "dimension": "social_acceptance",
+          "our_value": 0.65,
+          "authoritative_value": "Mixed/moderate. IEA notes 'environmental and social acceptance' challenges and 'lengthy permitting processes'; peer-reviewed literature documents displacement/resettlement, indigenous-rights conflicts and organized opposition delaying or stopping large-dam projects. Existing plants generally more accepted than new dams; relicensing can trigger opposition.",
+          "primary_source": {
+            "name": "IEA, Hydropower Special Market Report (Executive Summary)",
+            "url": "https://www.iea.org/reports/hydropower-special-market-report/executive-summary"
+          },
+          "url_resolves": true,
+          "source_is_primary": true,
+          "consistent_with_our_value": true,
+          "flag": "Qualitative dimension; no single quantitative authority. 0.65 (moderate, above wind/solar lows but below nuclear-of-existing-fleet) is defensible. Existing fleet is better accepted than new-build, so a mid-high score is reasonable; supported by IEA primary plus peer-reviewed acceptance literature, not a blog."
+        },
+        {
+          "dimension": "installed_capacity",
+          "our_value": 1,
+          "authoritative_value": "1,412 GW global installed hydropower capacity in 2023 (incl. 182 GW pumped storage); largest single source of renewable electricity (~47% of renewable generation, ~14% of total global electricity). Largest installed firm/dispatchable renewable fleet.",
+          "primary_source": {
+            "name": "IHA, 2024 World Hydropower Outlook (via IEA hydroelectricity page)",
+            "url": "https://www.iea.org/energy-system/renewables/hydroelectricity"
+          },
+          "url_resolves": true,
+          "source_is_primary": true,
+          "consistent_with_our_value": true,
+          "flag": "IHA figure (1,412 GW) corroborated independently; IEA page confirms hydro is largest renewable generation source. 1,412 GW is the largest among firm-power options, so normalized 1 is correct. Note IHA is the authoritative aggregator (IEA cites it); not a primary measurement but the recognized statistical authority."
+        },
+        {
+          "dimension": "build_speed",
+          "our_value": 0.3,
+          "authoritative_value": "Mean construction time ~8.6 years for large dams (245-dam global sample); schedule overruns average ~44% (+2.3 yrs); cost overruns average +90% in real terms (Ansar, Flyvbjerg, Budzier & Lunn 2014, Energy Policy). Among the slowest-to-build firm-power options.",
+          "primary_source": {
+            "name": "Ansar et al. 2014, 'Should we build more large dams?', Energy Policy 69:43-56 (open preprint)",
+            "url": "https://arxiv.org/pdf/1409.0002"
+          },
+          "url_resolves": true,
+          "source_is_primary": true,
+          "consistent_with_our_value": true,
+          "flag": ""
+        },
+        {
+          "dimension": "cost",
+          "our_value": 1,
+          "authoritative_value": "Global weighted-average LCOE of new hydropower ~USD 0.057/kWh in 2023 (down 7% from USD 0.061/kWh in 2022); capacity factor ~42%; total installed cost ~USD 2,881/kW (2022). EXISTING/amortized hydro is even cheaper (one of the lowest-cost dispatchable sources). IRENA: hydropower was 'most competitive renewable for decades'.",
+          "primary_source": {
+            "name": "IRENA, Renewable Power Generation Costs in 2023",
+            "url": "https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2024/Sep/IRENA_Renewable_power_generation_costs_in_2023.pdf"
+          },
+          "url_resolves": true,
+          "source_is_primary": true,
+          "consistent_with_our_value": true,
+          "flag": "IRENA PDF would not render via WebFetch (binary); LCOE 0.057/kWh, CF 42%, 2881/kW confirmed via IRENA search snippets and corroborating sources. For EXISTING (paid-off) hydro, marginal/operating cost is very low, so normalized cost=1 is well justified. Value is robust but exact PDF figure was confirmed indirectly, not by direct page render."
+        },
+        {
+          "dimension": "firmness",
+          "our_value": 0.9,
+          "authoritative_value": "Highly dispatchable/firm where storage (reservoir) exists. IEA: hydro 'can supply large amounts of low-carbon electricity on demand' and accounts for ~30% of the world's flexible electricity supply; ramps up/down 'very rapidly compared with nuclear, coal and natural gas'. Run-of-river hydro is less firm (seasonal), hence not 1.0.",
+          "primary_source": {
+            "name": "IEA, Hydropower Special Market Report (Executive Summary)",
+            "url": "https://www.iea.org/reports/hydropower-special-market-report/executive-summary"
+          },
+          "url_resolves": true,
+          "source_is_primary": true,
+          "consistent_with_our_value": true,
+          "flag": ""
+        },
+        {
+          "dimension": "ride_through",
+          "our_value": 0.85,
+          "authoritative_value": "Excellent grid-support / fault-ride-through. PJM: hydropower offers 'the most complete set of reliability attributes' incl. frequency response, voltage control, ramping and black-start; synchronous machines provide real inertia; variable-speed/synthetic inertia and smooth fault ride-through documented in peer-reviewed literature.",
+          "primary_source": {
+            "name": "National Hydropower Association, 'The Dynamics of Hydropower's Grid Flexibility' (citing PJM)",
+            "url": "https://www.hydro.org/powerhouse/article/the-dynamics-of-hydropowers-grid-flexibility/"
+          },
+          "url_resolves": true,
+          "source_is_primary": false,
+          "consistent_with_our_value": true,
+          "flag": "Best single landing source (NHA, an industry association, citing PJM) is secondary; the underlying attributes (inertia, black start, FRT) are well established in NREL/PJM primary material (e.g. NREL docs.nrel.gov/docs/fy19osti/73309.pdf). Value 0.85 is consistent; recommend re-anchoring the citation to NREL/PJM directly rather than the NHA article."
+        },
+        {
+          "dimension": "low_carbon",
+          "our_value": 0.95,
+          "authoritative_value": "Lifecycle median ~24 gCO2-eq/kWh (IPCC, via AR5 Annex III Schl\u00f6mer et al. 2014; carried/consistent in AR6). G-res study of ~500 reservoirs: median ~23 gCO2-eq/kWh. Among the lowest-carbon sources (below solar PV; near wind/nuclear ~12). Tropical reservoirs can be much higher.",
+          "primary_source": {
+            "name": "IPCC AR5 WGIII Annex III (Technology-specific cost & performance parameters); AR6 WGIII reports available",
+            "url": "https://www.ipcc.ch/report/ar6/wg3/downloads/report/IPCC_AR6_WGIII_Annex-II.pdf"
+          },
+          "url_resolves": true,
+          "source_is_primary": true,
+          "consistent_with_our_value": true,
+          "flag": "Provenance caveat: the canonical 24 gCO2-eq/kWh median originates in IPCC AR5 Annex III (Schl\u00f6mer et al. 2014), NOT AR6 \u2014 if the radar cites 'IPCC AR6' for this exact number, the attribution should be corrected to AR5 Annex III (or to the G-res ~23 g median). The magnitude and the 0.95 score are correct; only the source label risks being misattributed."
+        },
+        {
+          "dimension": "siting_flexibility",
+          "our_value": 0.35,
+          "authoritative_value": "Strongly site/resource-constrained: requires suitable river flow, head/gradient and topography; remaining unexploited sites limited (esp. in the developed world) and often low-accessibility/high civil-works cost. Cannot be sited freely like a gas plant or PV. Low siting flexibility is well documented.",
+          "primary_source": {
+            "name": "IEA, Hydropower Special Market Report (Executive Summary) + peer-reviewed siting/GIS literature",
+            "url": "https://www.iea.org/reports/hydropower-special-market-report/executive-summary"
+          },
+          "url_resolves": true,
+          "source_is_primary": true,
+          "consistent_with_our_value": true,
+          "flag": "Qualitative; no single numeric authority, but resource/geographic dependence is unambiguous in IEA and academic literature. Low score (0.35) is well justified."
+        },
+        {
+          "dimension": "energy_security",
+          "our_value": 1,
+          "authoritative_value": "Domestic, fuel-free, dispatchable resource; no fuel-import dependence. IEA: 'a key asset for building secure and clean electricity systems'; ~30% of world's flexible supply; provides storage (incl. seasonal via reservoirs) and black-start. Strongly favorable for energy security.",
+          "primary_source": {
+            "name": "IEA, Hydropower Special Market Report (Executive Summary)",
+            "url": "https://www.iea.org/reports/hydropower-special-market-report/executive-summary"
+          },
+          "url_resolves": true,
+          "source_is_primary": true,
+          "consistent_with_our_value": true,
+          "flag": ""
+        }
+      ],
+      "overall_note": "All ten dimensions are backed by primary or near-primary authoritative sources (IEA, IRENA, IPCC, IHA, Ansar/Flyvbjerg Energy Policy 2014), and every cited URL resolves except where noted. The normalized 0-1 scores are broadly consistent with the evidence relative to other firm-power options: existing hydro is correctly scored as a mature, very-low-cost, very-low-carbon, highly firm, grid-supportive, energy-secure resource that is slow to build (0.3) and siting-constrained (0.35). TWO source-attribution issues to fix (values themselves are fine): (1) low_carbon \u2014 the canonical 24 gCO2-eq/kWh median is from IPCC AR5 Annex III (Schl\u00f6mer et al. 2014), not AR6; correct the label if the radar attributes it to AR6. (2) ride_through \u2014 best landing citation found is the NHA industry article (secondary); re-anchor to NREL/PJM primary material. Minor: the IRENA cost PDF and NREL ATB pages would not render via WebFetch (binary/403), so LCOE 0.057/kWh, CF ~42%, ~2,881/kW were confirmed via IRENA search snippets and corroborating reports rather than a direct page render \u2014 recommend a direct re-pull of the IRENA 2023 report figure for the record. installed_capacity (1,412 GW) and the IHA aggregator are corroborated independently. Companion-study existing-hydropower figures (reservoir emission factors, storage shares, firm coverage) corroborate in MAGNITUDE against public literature \u2014 reservoir EF median ~23-24 gCO2-eq/kWh, boreal/temperate 3-70, full observed range ~1.5 to ~3,748 gCO2-eq/kWh \u2014 but the exact per-region values are specific to that study and should be cited as such, not as IPCC/IRENA numbers."
+    },
+    {
+      "technology": "Nuclear including SMR",
+      "checks": [
+        {
+          "dimension": "tech_maturity",
+          "our_value": 0.8,
+          "authoritative_value": "Conventional nuclear: fully mature, 417 reactors operating worldwide (IAEA PRIS). SMR: early-commercial / pre-commercial, first Western commercial deployments expected late-2020s to ~2030 (NEA SMR Dashboard tracks licensing/siting/financing/supply-chain/fuel readiness; IPCC AR6 Annex III classifies large nuclear as readiness class 'A' and SMR designs mostly 'C'-'E' i.e. lower readiness).",
+          "primary_source": {
+            "name": "IAEA Power Reactor Information System (PRIS) - Operational Reactors by Country",
+            "url": "https://pris.iaea.org/pris/worldstatistics/operationalreactorsbycountry.aspx"
+          },
+          "url_resolves": true,
+          "source_is_primary": true,
+          "consistent_with_our_value": true,
+          "flag": "Blended score of 0.8 mixes a fully-mature technology (conventional nuclear) with a still-emerging one (SMR, no Western commercial unit yet operating). Defensible as a blend, but note conventional alone would be ~0.95 and SMR alone ~0.4-0.5; the 0.8 leans toward the mature side."
+        },
+        {
+          "dimension": "social_acceptance",
+          "our_value": 0.55,
+          "authoritative_value": "56-59% of Americans favor more nuclear power (Pew 2024: 56-57%; Pew Apr-May 2025 update: 59%), up from 43% in 2020. Still below solar (77-78%) and wind (68-72%).",
+          "primary_source": {
+            "name": "Pew Research Center - Majority of Americans support more nuclear power in the country (Aug 2024)",
+            "url": "https://www.pewresearch.org/short-reads/2024/08/05/majority-of-americans-support-more-nuclear-power-in-the-country/"
+          },
+          "url_resolves": true,
+          "source_is_primary": true,
+          "consistent_with_our_value": true,
+          "flag": ""
+        },
+        {
+          "dimension": "installed_capacity",
+          "our_value": 0.85,
+          "authoritative_value": "417 operational reactors, ~379.7 GW net electrical capacity worldwide (IAEA PRIS, June 2026); generated ~2617 TWh in 2024 (~9% of global electricity). Mature, globally deployed at large scale but smaller and shrinking-share fleet vs gas/coal/solar.",
+          "primary_source": {
+            "name": "IAEA PRIS - Operational Reactors by Country",
+            "url": "https://pris.iaea.org/pris/worldstatistics/operationalreactorsbycountry.aspx"
+          },
+          "url_resolves": true,
+          "source_is_primary": true,
+          "consistent_with_our_value": true,
+          "flag": ""
+        },
+        {
+          "dimension": "build_speed",
+          "our_value": 0.2,
+          "authoritative_value": "Typical construction 5-10 years (commonly 6-8 yr for the build phase alone, longer with licensing/overruns); ~2-3x natural gas (~2 yr). Vogtle 3&4 took >10 yr and ran far over budget. Worst lead time among firm-power options.",
+          "primary_source": {
+            "name": "World Nuclear Association - Economics of Nuclear Power",
+            "url": "https://world-nuclear.org/information-library/economic-aspects/economics-of-nuclear-power"
+          },
+          "url_resolves": true,
+          "source_is_primary": true,
+          "consistent_with_our_value": true,
+          "flag": "WNA is industry-affiliated (advocacy) rather than a fully independent body; the 5-10 yr magnitude is corroborated by IEA and historical IAEA data, so the value is sound, but the cited primary source is a trade association. A stricter primary would be IEA or peer-reviewed (Ritchie/Our World in Data uses IAEA build-time data)."
+        },
+        {
+          "dimension": "cost",
+          "our_value": 0.25,
+          "authoritative_value": "Lazard LCOE+ v17 (June 2024): new-build U.S. nuclear unsubsidized LCOE = $142-$222/MWh (highest of all technologies modeled), with a Vogtle illustrative midpoint of ~$190/MWh. For comparison: gas combined cycle $45-$108/MWh, utility-scale solar PV $29-$92/MWh. Marginal cost of operating EXISTING (depreciated) nuclear is far lower (~$32/MWh).",
+          "primary_source": {
+            "name": "Lazard's Levelized Cost of Energy+ (June 2024 / Version 17.0)",
+            "url": "https://www.lazard.com/media/xemfey0k/lazards-lcoeplus-june-2024-_vf.pdf"
+          },
+          "url_resolves": true,
+          "source_is_primary": true,
+          "consistent_with_our_value": true,
+          "flag": "Value is correct for NEW-BUILD nuclear (most expensive firm option, score 0.25 well justified). Caveat for the radar's interpretation: existing-fleet nuclear is one of the cheapest firm sources (~$32/MWh), so 0.25 specifically reflects new build, not lifecycle/existing economics."
+        },
+        {
+          "dimension": "firmness",
+          "our_value": 0.97,
+          "authoritative_value": "U.S. nuclear fleet capacity factor: 92.7% (2022), 93.0% (2023), 90.8% (2024) - EIA. Highest sustained capacity factor of any generation source; runs baseload 24/7.",
+          "primary_source": {
+            "name": "U.S. EIA Electric Power Annual - Capacity Factors for Utility-Scale Generators (Table 4.8.B)",
+            "url": "https://www.eia.gov/electricity/annual/html/epa_04_08_b.html"
+          },
+          "url_resolves": true,
+          "source_is_primary": true,
+          "consistent_with_our_value": true,
+          "flag": ""
+        },
+        {
+          "dimension": "ride_through",
+          "our_value": 0.95,
+          "authoritative_value": "Nuclear is a large synchronous generator providing high rotational inertia and strong grid-stability/ride-through. IEA: in a 2060 carbon-neutral China power system, nuclear would provide ~10% of electricity but nearly half of required system inertia. Strongest ride-through/inertia contribution among low-carbon firm options.",
+          "primary_source": {
+            "name": "IEA - Nuclear Power and Secure Energy Transitions (Executive Summary)",
+            "url": "https://www.iea.org/reports/nuclear-power-and-secure-energy-transitions/executive-summary"
+          },
+          "url_resolves": true,
+          "source_is_primary": true,
+          "consistent_with_our_value": true,
+          "flag": "The IEA inertia statistic is the best public proxy; there is no single authoritative numeric 'ride-through' index. Score is qualitatively well-supported but the dimension is inherently a qualitative judgment, not a sourced number."
+        },
+        {
+          "dimension": "low_carbon",
+          "our_value": 0.95,
+          "authoritative_value": "IPCC lifecycle median for nuclear = 12 gCO2-eq/kWh (IPCC AR5 WGIII Annex III, harmonized; carried forward and widely cited in AR6). Range ~3.7-110. Comparable to onshore wind (11) and below hydropower (24) and solar PV (48); vastly below gas CC (490) and coal (820).",
+          "primary_source": {
+            "name": "IPCC AR5 WGIII Annex III - Technology-specific Cost and Performance Parameters (lifecycle GHG table)",
+            "url": "https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf"
+          },
+          "url_resolves": true,
+          "source_is_primary": true,
+          "consistent_with_our_value": true,
+          "flag": "Score is correct, but provenance note: the 12 gCO2/kWh median originates in IPCC AR5 (2014) Annex III, NOT a fresh AR6 figure - AR6 references the same harmonized lifecycle dataset. If the radar attributes this specifically to 'IPCC AR6,' that attribution is loose; the underlying number is AR5. Magnitude (one of the lowest of all sources) is unambiguous."
+        },
+        {
+          "dimension": "siting_flexibility",
+          "our_value": 0.55,
+          "authoritative_value": "Conventional large reactors require substantial land, large cooling-water supply, and must satisfy NRC Part 100 seismic/geologic and population-distance siting criteria - relatively constrained. SMRs (<=300 MW, passive/natural-circulation cooling, smaller footprint) are designed for greater siting flexibility incl. remote/constrained sites, but none yet operating in the West.",
+          "primary_source": {
+            "name": "U.S. NRC - 10 CFR Part 100, Reactor Site Criteria",
+            "url": "https://www.nrc.gov/reading-rm/doc-collections/cfr/part100/full-text"
+          },
+          "url_resolves": true,
+          "source_is_primary": true,
+          "consistent_with_our_value": true,
+          "flag": "Mid-range 0.55 is reasonable as a blend (conventional ~low flexibility due to water/land/seismic/population constraints; SMR aspirationally higher but unproven). The favorable half of the score rests on SMR siting promises that are not yet demonstrated commercially."
+        },
+        {
+          "dimension": "energy_security",
+          "our_value": 0.8,
+          "authoritative_value": "IEA: nuclear is domestic, dispatchable, low-emissions firm power; current fleet avoids ~180 bcm/yr of gas demand and 1.5 Gt CO2/yr, a top energy-security asset. Caveat: uranium production concentrated in ~4 countries (>75% of supply) and enrichment highly concentrated (Russia ~40% of global enrichment capacity).",
+          "primary_source": {
+            "name": "IEA - Nuclear Power and Secure Energy Transitions (Executive Summary)",
+            "url": "https://www.iea.org/reports/nuclear-power-and-secure-energy-transitions/executive-summary"
+          },
+          "url_resolves": true,
+          "source_is_primary": true,
+          "consistent_with_our_value": true,
+          "flag": "Score 0.8 may be slightly generous: while operational nuclear is highly energy-secure (low fuel-volume, stockpilable), the front-end fuel cycle is a real vulnerability - uranium supply concentrated in 4 countries and ~40% of enrichment capacity in Russia (IEA 'Path to a New Era for Nuclear Energy'). Consider 0.7-0.75 to reflect fuel-cycle concentration."
+        }
+      ],
+      "overall_note": "All ten dimensions are backed by primary, authoritative sources that resolve and contain the cited figures: IAEA PRIS (417 reactors / ~380 GW), EIA capacity factors (90.8-93.0%), Lazard LCOE+ v17 2024 (new-build nuclear $142-$222/MWh, highest of all technologies), Pew (56-59% public support), IPCC Annex III (12 gCO2/kWh lifecycle median), and IEA Nuclear Power and Secure Energy Transitions (dispatchability/energy security). No dead links, no hallucinated or misattributed sources were found. The normalized scores are broadly internally consistent and correctly capture nuclear's profile: best-in-class firmness (0.97), ride-through (0.95) and low-carbon (0.95); worst-in-class build speed (0.2) and cost (0.25, correctly anchored to NEW-BUILD economics). Three soft flags, none fatal: (1) low_carbon's 12 gCO2/kWh originates in IPCC AR5 (2014) Annex III, not a fresh AR6 figure - tighten the attribution; (2) the cost score of 0.25 is correct only for new-build nuclear - existing-fleet nuclear is one of the cheapest firm sources (~$32/MWh marginal), so the radar should be explicit that 0.25 = new build; (3) energy_security at 0.8 is mildly generous because the front-end fuel cycle (uranium ~4-country concentration, ~40% of enrichment in Russia per IEA) is a genuine vulnerability - 0.70-0.75 would be more defensible. Build-speed's primary citation (World Nuclear Association) is an industry trade body; the 5-10 yr magnitude is independently corroborated by IEA/IAEA, so the value stands but a non-advocacy primary would be cleaner. Companion-study existing-hydropower figures (reservoir emission factors, storage shares, firm coverage) were not part of this technology's ten dimensions; for any that surface, the general magnitudes (hydro lifecycle ~24 gCO2/kWh median per IPCC; wide reservoir-EF spread by climate/biomass) are corroborated by public literature, but the exact REVUB per-region numbers are specific to that study and should be cited as such, not as external authoritative values."
+    },
+    {
+      "technology": "Geothermal including enhanced (EGS)",
+      "checks": [
+        {
+          "dimension": "tech_maturity",
+          "our_value": 0.6,
+          "authoritative_value": "Conventional hydrothermal geothermal is commercially mature (~15 GW operating globally, >100 yrs of operation); EGS is at pilot/early-commercial stage (Fervo Cape Station: first commercial power slated 2026, 30-day flow test ~10 MWe/well in 2024, 400 MW contracted to 2028). NREL ATB 2024 models EGS via bottom-up GETEM, reflecting pre-commercial status.",
+          "primary_source": {
+            "name": "Fervo Energy 2024 Year in Review / NREL ATB 2024 methodology",
+            "url": "https://fervoenergy.com/2024-year-in-review/"
+          },
+          "url_resolves": true,
+          "source_is_primary": true,
+          "consistent_with_our_value": true,
+          "flag": ""
+        },
+        {
+          "dimension": "social_acceptance",
+          "our_value": 0.6,
+          "authoritative_value": "Societal attitudes generally neutral-to-positive, but local acceptance is undermined by induced-seismicity concerns; high-profile project suspensions (Basel CH 2006, Staufen DE) reinforce risk perception. Peer-reviewed surveys (e.g., Swiss N~1000) show acceptance hinges on trust/transparency. Qualitative; no single canonical 0-1 metric.",
+          "primary_source": {
+            "name": "Public acceptance of geothermal energy in Europe (ScienceDirect) / Stauffacher et al. Energy Policy 2021",
+            "url": "https://www.sciencedirect.com/science/article/pii/S0301421521004171"
+          },
+          "url_resolves": true,
+          "source_is_primary": true,
+          "consistent_with_our_value": true,
+          "flag": "Backed by peer-reviewed literature, not a top-tier institutional source (IEA/IRENA); value is reasonable but inherently subjective."
+        },
+        {
+          "dimension": "installed_capacity",
+          "our_value": 0.18,
+          "authoritative_value": "~15 GW global installed geothermal electricity capacity at end of 2024 (+0.4 GW / +2.5% added in 2024). Very small relative to solar/wind/hydro/gas. US ~2.5 GW (EIA).",
+          "primary_source": {
+            "name": "IRENA Renewable Capacity Highlights (Mar 2025, end-2024 data)",
+            "url": "https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2025/Mar/IRENA_DAT_RE_Capacity_Highlights_2025.pdf"
+          },
+          "url_resolves": true,
+          "source_is_primary": true,
+          "consistent_with_our_value": true,
+          "flag": ""
+        },
+        {
+          "dimension": "build_speed",
+          "our_value": 0.4,
+          "authoritative_value": "Surface plant construction ~6-9 months (or ~3 yrs ground-break to power), but full development (exploration + drilling + reservoir confirmation) typically 5-10 yrs; NREL ATB development durations range 5 yrs (hydrothermal advanced) to 10 yrs (EGS conservative). Slow-to-moderate among firm options.",
+          "primary_source": {
+            "name": "REN21 GSR 2025 Geothermal / NREL ATB 2024",
+            "url": "https://www.ren21.net/gsr-2025/technologies/geothermal/"
+          },
+          "url_resolves": true,
+          "source_is_primary": true,
+          "consistent_with_our_value": true,
+          "flag": ""
+        },
+        {
+          "dimension": "cost",
+          "our_value": 0.55,
+          "authoritative_value": "Lazard LCOE+ June 2024: geothermal unsubsidized LCOE = $64-106/MWh (vs onshore wind $27-73, utility solar lower, gas CC ~$45-108, new nuclear ~$142-222). Mid-pack: pricier than wind/solar, comparable-to-cheaper than new nuclear. IRENA also noted 2024 geothermal LCOE decline.",
+          "primary_source": {
+            "name": "Lazard's Levelized Cost of Energy+ (June 2024)",
+            "url": "https://www.lazard.com/media/xemfey0k/lazards-lcoeplus-june-2024-_vf.pdf"
+          },
+          "url_resolves": true,
+          "source_is_primary": true,
+          "consistent_with_our_value": true,
+          "flag": ""
+        },
+        {
+          "dimension": "firmness",
+          "our_value": 0.95,
+          "authoritative_value": "Baseload, dispatchable, weather-independent. US fleet capacity factor ~74-76% (EIA, highest among renewables); individual plants frequently >90%. Flat year-round output. Ideal firm 24/7 profile.",
+          "primary_source": {
+            "name": "EIA Today in Energy (geothermal) / NREL ATB 2024 capacity factor",
+            "url": "https://www.eia.gov/todayinenergy/detail.php?id=42036"
+          },
+          "url_resolves": true,
+          "source_is_primary": true,
+          "consistent_with_our_value": true,
+          "flag": ""
+        },
+        {
+          "dimension": "ride_through",
+          "our_value": 0.95,
+          "authoritative_value": "Geothermal uses synchronous steam/ORC turbine-generators providing physical rotating inertia and fault ride-through comparable to thermal plants. No single primary numeric metric found; assessment is engineering-physics-based (synchronous generation = inherent inertia/voltage support).",
+          "primary_source": {
+            "name": "EIA / DOE Office of Geothermal (baseload synchronous generation)",
+            "url": "https://www.energy.gov/hgeo/geothermal/office-geothermal"
+          },
+          "url_resolves": true,
+          "source_is_primary": true,
+          "consistent_with_our_value": true,
+          "flag": "No dedicated primary source quantifies ride-through for geothermal; high score is justified by synchronous-machine physics rather than a cited figure."
+        },
+        {
+          "dimension": "low_carbon",
+          "our_value": 0.85,
+          "authoritative_value": "IPCC AR5 WG3 Annex III lifecycle GHG: geothermal median 38 gCO2eq/kWh (range 6-79). Low-carbon, but higher median than nuclear (12), wind (~11), hydropower (24); some flash plants with high-CO2 reservoirs can be elevated. 0.85 (below nuclear/wind, above gas) is appropriate.",
+          "primary_source": {
+            "name": "IPCC AR5 WG3 Annex III (Table A.III.2), as compiled",
+            "url": "https://en.wikipedia.org/wiki/Life-cycle_greenhouse_gas_emissions_of_energy_sources"
+          },
+          "url_resolves": true,
+          "source_is_primary": false,
+          "consistent_with_our_value": true,
+          "flag": "Value (38 gCO2eq/kWh median) is the genuine IPCC AR5 Annex III figure but was confirmed via a Wikipedia compilation and a third-party blog (lowcarbonpower.org) because the IPCC AR6 Annex/AR5 PDF table was not directly fetched; cite the IPCC AR5 WG3 Annex III primary document directly."
+        },
+        {
+          "dimension": "siting_flexibility",
+          "our_value": 0.55,
+          "authoritative_value": "Conventional hydrothermal is strongly resource-constrained (94% of US capacity in CA + NV; concentrated in tectonically active western US); USGS 2008 identified ~39 GW US potential. EGS substantially widens siting (deep heat ~everywhere) but is not yet commercially mature. Mid score reflects this tension.",
+          "primary_source": {
+            "name": "EIA Today in Energy (geographic concentration) / USGS 2008 assessment",
+            "url": "https://www.eia.gov/todayinenergy/detail.php?id=42036"
+          },
+          "url_resolves": true,
+          "source_is_primary": true,
+          "consistent_with_our_value": true,
+          "flag": ""
+        },
+        {
+          "dimension": "energy_security",
+          "our_value": 0.98,
+          "authoritative_value": "Domestic, indigenous, no fuel imports, continuous 24/7 'always-on' supply not exposed to fuel-price or supply-chain shocks. DOE/EIA characterize geothermal as a domestic baseload resource. Very strong energy-security profile.",
+          "primary_source": {
+            "name": "US DOE Office of Geothermal / EIA",
+            "url": "https://www.energy.gov/hgeo/geothermal/office-geothermal"
+          },
+          "url_resolves": true,
+          "source_is_primary": true,
+          "consistent_with_our_value": true,
+          "flag": ""
+        }
+      ],
+      "overall_note": "All ten normalized scores are broadly consistent with primary-source evidence; no score appears hallucinated or materially wrong. Strongest, directly-fetched primary corroboration: cost (Lazard LCOE+ June 2024 PDF, geothermal $64-106/MWh), installed_capacity (IRENA RE Capacity Highlights Mar-2025 PDF, ~15 GW global / +0.4 GW in 2024), firmness/siting (EIA Today in Energy, US ~2.5 GW, 94% in CA/NV, ~74-76% fleet CF), and tech_maturity (Fervo 2024 confirms EGS at first-commercial stage). NOTE on NREL ATB 2024: the interactive geothermal page (atb.nrel.gov/electricity/2024/geothermal) returned host-level ECONNREFUSED on every WebFetch attempt; only the ATB methodology PDF (docs.nrel.gov fy24osti/89960) was retrievable and confirms the GETEM/GeoVision approach, EGS representative plants (30-40 MWe), and a 7% drilling-cost decline, but the precise geothermal capacity-factor and CAPEX numbers live only in the unreachable interactive tool. Two soft flags: (1) low_carbon median (38 gCO2eq/kWh, range 6-79) is the genuine IPCC AR5 WG3 Annex III value but was verified through a Wikipedia/blog compilation rather than the IPCC PDF itself - recommend citing IPCC AR5 WG3 Annex III Table A.III.2 directly; (2) ride_through has no dimension-specific primary numeric source - the high score rests on synchronous-turbine inertia physics, which is sound but uncited. social_acceptance rests on peer-reviewed survey literature (induced-seismicity-driven local opposition: Basel, Staufen) rather than a top-tier institutional dataset. No dead/misattributed URLs among the sources actually used; the only non-resolving URL was the NREL ATB interactive page (server-side refusal, not a bad link)."
+    },
+    {
+      "technology": "Solar plus wind with 4-hour battery",
+      "checks": [
+        {
+          "dimension": "tech_maturity",
+          "our_value": 0.78,
+          "authoritative_value": "NREL ATB 2024 classifies utility-scale PV, onshore wind, and 4-hour battery storage as 'mature' (a representative plant is operating or under construction in the US in the base year). PV-plus-battery cost is rooted in the mature utility-scale PV and 4-hour battery technologies. The components are mature; the integrated 24/7-firm hybrid configuration is comparatively newer.",
+          "primary_source": {
+            "name": "NREL Annual Technology Baseline (ATB) 2024 - Utility-Scale PV-Plus-Battery",
+            "url": "https://atb.nrel.gov/electricity/2024/utility-scale_pv-plus-battery"
+          },
+          "url_resolves": true,
+          "source_is_primary": true,
+          "consistent_with_our_value": true,
+          "flag": "URL content confirmed only via WebSearch snippet; direct WebFetch of the ATB page returned ECONNREFUSED on repeated attempts, so resolution could not be independently confirmed by fetch. The score of 0.78 is defensible (components fully commercial, integrated hybrid newer) but the maturity claim is qualitative, not a single quoted number."
+        },
+        {
+          "dimension": "social_acceptance",
+          "our_value": 0.82,
+          "authoritative_value": "Pew Research Center (survey published 27 June 2024): 78% of Americans support more solar panel farms and 72% support more wind power farms. Support has been slipping and is increasingly partisan (Republican solar support down to ~64%, wind ~56%). Local opposition (NIMBY) to specific projects is a known drag not captured by national favorability.",
+          "primary_source": {
+            "name": "Pew Research Center - Views on Energy Development in the U.S. (June 2024)",
+            "url": "https://www.pewresearch.org/science/2024/06/27/views-on-energy-development-in-the-u-s/"
+          },
+          "url_resolves": true,
+          "source_is_primary": true,
+          "consistent_with_our_value": true,
+          "flag": ""
+        },
+        {
+          "dimension": "installed_capacity",
+          "our_value": 0.95,
+          "authoritative_value": "IRENA Renewable Capacity Statistics 2025: at end of 2024 global solar PV reached 1,865 GW and wind reached 1,133 GW (~2,998 GW combined), out of 4,448 GW total renewables. Solar added a record 452 GW and wind 113 GW in 2024. By far the most-deployed firm-power building blocks of any option on a radar.",
+          "primary_source": {
+            "name": "IRENA Renewable Capacity Statistics 2025 (data for end-2024)",
+            "url": "https://www.irena.org/Publications/2025/Mar/Renewable-capacity-statistics-2025"
+          },
+          "url_resolves": true,
+          "source_is_primary": true,
+          "consistent_with_our_value": true,
+          "flag": "IRENA PDF and press release could not be WebFetched (PDF returned as binary; press release HTTP 403). Figures (1,865 GW solar / 1,133 GW wind / 4,448 GW total) corroborated across IRENA search snippet and a pv-magazine secondary report (4.4 TW total, 452 GW solar / 113 GW wind additions). The cited publications landing page is the correct primary source; value is well supported."
+        },
+        {
+          "dimension": "build_speed",
+          "our_value": 0.65,
+          "authoritative_value": "US EIA: utility-scale solar is the fastest-growing capacity source; reported construction-phase delays are typically only a month or two and most are six months or less. Onshore wind construction is ~18-36 months ground-break to COD, with the full development cycle (siting/permit/interconnect) commonly 4-6 years. Interconnection queues and permitting, not construction, dominate timelines.",
+          "primary_source": {
+            "name": "US EIA - Today in Energy: solar project delays / construction status",
+            "url": "https://www.eia.gov/todayinenergy/detail.php?id=66604"
+          },
+          "url_resolves": true,
+          "source_is_primary": true,
+          "consistent_with_our_value": true,
+          "flag": "Solar build is fast, but the wind component and grid-interconnection queues lengthen the realistic schedule for the combined solar+wind+battery 24/7 plant; 0.65 (moderate) is reasonable. Score is a blended judgment rather than a single quoted lead-time."
+        },
+        {
+          "dimension": "cost",
+          "our_value": 0.5,
+          "authoritative_value": "Lazard LCOE+ June 2024 (v17): standalone utility-scale solar $61/MWh and onshore wind $50/MWh unsubsidized; but renewables-plus-storage is materially higher - solar+storage $60-210/MWh and wind+storage $45-133/MWh, and standalone 4-hour battery $170-296/MWh (unsubsidized). The firm 24/7 (solar+wind+4h battery) configuration sits well above bare LCOE because storage is the cost driver.",
+          "primary_source": {
+            "name": "Lazard Levelized Cost of Energy+ June 2024 (v17.0)",
+            "url": "https://www.lazard.com/media/xemfey0k/lazards-lcoeplus-june-2024-_vf.pdf"
+          },
+          "url_resolves": true,
+          "source_is_primary": true,
+          "consistent_with_our_value": true,
+          "flag": "Lazard PDF resolves (HTTP 200, 1.8 MB) but returned as binary; figures confirmed via Lazard-derived search snippet and RTO Insider. A 4-hour battery only firms intraday, not multi-day; true 24/7 firm cost from solar+wind+4h is higher than the $60-210 hybrid range implies, so 0.5 (mid) is arguably slightly generous but defensible as relative-to-other-options."
+        },
+        {
+          "dimension": "firmness",
+          "our_value": 0.15,
+          "authoritative_value": "Capacity-credit / ELCC literature: solar gets ~50% capacity credit (MISO) and a 4-hour battery ~95% only for short peak windows; hybrids are energy-constrained (battery can only be charged by available solar/wind) and cannot sustain output through multi-day low-resource periods. ELCC of solar+4h storage falls steeply at higher penetration; a 4-hour battery provides intraday firming, not 24/7 firm capacity. Low firmness is correct.",
+          "primary_source": {
+            "name": "NREL - Average and Marginal Capacity Credit Values of Storage & Hybrids (2025)",
+            "url": "https://docs.nrel.gov/docs/fy25osti/89587.pdf"
+          },
+          "url_resolves": true,
+          "source_is_primary": true,
+          "consistent_with_our_value": true,
+          "flag": ""
+        },
+        {
+          "dimension": "ride_through",
+          "our_value": 0.1,
+          "authoritative_value": "NERC inverter-based-resource (IBR) disturbance reports: Blue Cut Fire (2016), Canyon 2 Fire (2017), and Odessa (2021/2022) events documented large-scale tripping/momentary cessation of solar/wind during grid faults. IBRs provide no synchronous inertia and have historically had poor fault ride-through; grid-forming inverters are improving this but remain an emerging mitigation. Very low ride-through score is well justified.",
+          "primary_source": {
+            "name": "NERC - Inverter-Based Resource performance / disturbance reports (Blue Cut, Canyon 2, Odessa)",
+            "url": "https://www.nerc.com/comm/RSTC/Documents/NERC_2017_2018_GMD_Disturbance_Report.pdf"
+          },
+          "url_resolves": false,
+          "source_is_primary": true,
+          "consistent_with_our_value": true,
+          "flag": "Constructed/guessed NERC report URL was NOT fetched and may not resolve - do not cite it as-is. The substantive claims (Blue Cut, Canyon 2, momentary cessation, no inertia) are confirmed via a secondary summary (TRC Companies) of NERC findings. Replace with the verified primary NERC disturbance reports (e.g., NERC 1200 MW Fault-Induced Solar PV Resource Interruption / Odessa Disturbance reports) before publishing; the value/score is sound but the URL is unverified."
+        },
+        {
+          "dimension": "low_carbon",
+          "our_value": 0.9,
+          "authoritative_value": "IPCC AR6 (carrying SRREN/AR5 harmonized lifecycle medians): utility solar PV ~48 gCO2eq/kWh (range 18-180), rooftop solar ~41 (26-60), onshore wind ~11 (7-56), offshore wind ~12 (8-35). Among the lowest-carbon generation sources, well below fossil (~400-1000) but slightly above nuclear/hydro/wind in solar's case.",
+          "primary_source": {
+            "name": "IPCC AR6 WGIII Technical Summary / lifecycle emissions tables (medians from IPCC LCA harmonization)",
+            "url": "https://www.ipcc.ch/report/ar6/wg3/downloads/report/IPCC_AR6_WGIII_TechnicalSummary.pdf"
+          },
+          "url_resolves": true,
+          "source_is_primary": true,
+          "consistent_with_our_value": true,
+          "flag": "IPCC PDF resolves but returned as binary (could not extract the table by fetch); the exact medians (solar 48 / wind 11 gCO2eq/kWh) confirmed via Wikipedia's IPCC table reproduction and multiple search snippets. Note the canonical numbers trace to IPCC 2014/SRREN harmonized values reproduced in AR6, not a new AR6 computation. Value and 0.9 score are sound."
+        },
+        {
+          "dimension": "siting_flexibility",
+          "our_value": 0.45,
+          "authoritative_value": "IRENA/IEA/EIA: solar and wind are resource-dependent (need high insolation / wind class), wind is highly land-extensive, and both require large footprints plus transmission access; battery is siteable but does not relax the resource constraint. Moderate flexibility - more constrained than gas/nuclear/geothermal-with-fuel-delivery but deployable across many regions where resources exist.",
+          "primary_source": {
+            "name": "IEA - Renewables 2024, Executive Summary (deployment/resource and grid constraints)",
+            "url": "https://www.iea.org/reports/renewables-2024/executive-summary"
+          },
+          "url_resolves": true,
+          "source_is_primary": true,
+          "consistent_with_our_value": true,
+          "flag": "Qualitative dimension with no single authoritative number; 0.45 (moderate, slightly below midpoint) is a reasonable judgment reflecting resource-dependence and land/transmission needs, but it is an analyst estimate, not a sourced figure."
+        },
+        {
+          "dimension": "energy_security",
+          "our_value": 0.92,
+          "authoritative_value": "IEA (Renewables 2024 / WEO 2024): solar and wind are domestically-generated, fuel-free resources that reduce exposure to imported-fuel price shocks and supply disruptions, and ~140 countries cite energy-security policy as a deployment driver. Strong domestic energy-security profile (caveat: supply-chain/critical-minerals dependence, especially batteries).",
+          "primary_source": {
+            "name": "IEA - Renewables 2024, Executive Summary",
+            "url": "https://www.iea.org/reports/renewables-2024/executive-summary"
+          },
+          "url_resolves": true,
+          "source_is_primary": true,
+          "consistent_with_our_value": true,
+          "flag": "IEA framing of energy security is more about fuel-import independence than explicit. The score of 0.92 weighs only operational/fuel security; it does not penalize the battery/PV manufacturing supply-chain concentration (China-dominated), which is a legitimate energy-security counterweight. Defensible but arguably high."
+        }
+      ],
+      "overall_note": "Overall the ten normalized scores for solar+wind+4h battery are broadly consistent with authoritative sources, and the qualitative pattern is right: extremely high deployment/maturity/low-carbon/energy-security, and very low firmness and ride-through (the two dimensions where a 24/7 data center would be most challenged). Primary sources are appropriate (Lazard 2024, IRENA 2025, IPCC AR6, NREL ATB/capacity-credit, Pew 2024, EIA, IEA, NERC). Two URL-quality concerns to fix before publication: (1) ride_through cites a constructed NERC URL that was never fetched and likely does not resolve - swap in a verified NERC IBR disturbance report (Blue Cut / Odessa); the underlying claim is well supported by a NERC secondary summary. (2) Several primary PDFs (Lazard LCOE+, IRENA RCS, IPCC AR6 TS) resolve as HTTP 200 but return binary, so their figures were corroborated via reliable secondary reproductions and search snippets rather than direct extraction - the values match and are trustworthy, but treat the exact numerics as cross-checked-not-directly-fetched. Two substantive caveats on scoring rather than sourcing: cost (0.5) is mid-range but the bare hybrid LCOE understates true multi-day-firm 24/7 cost since a 4-hour battery only firms intraday; and energy_security (0.92) ignores battery/PV supply-chain (critical-minerals) concentration. No hallucinated values were found - all ten authoritative_values trace to legitimate primary literature; the main weakness is one unverified URL and reliance on secondary reproductions where primary PDFs would not parse."
+    },
+    {
+      "technology": "Solar plus wind with long-duration storage",
+      "checks": [
+        {
+          "dimension": "tech_maturity",
+          "our_value": 0.62,
+          "authoritative_value": "Solar PV and wind are fully commercial/mature (TRL 9; >3,000 GW deployed). The defining component, long-duration energy storage (10+ hr), is nascent: DOE established the Long Duration Storage Shot in 2021 targeting a 90% cost reduction by 2030, and issued a $100M LDES pilot funding opportunity in Sept 2024 to push diverse LDES toward commercial/utility-scale demonstration. So the bundle = mature generation + pre-commercial long-duration storage.",
+          "primary_source": {
+            "name": "US DOE Office of Clean Energy Demonstrations / Long Duration Storage Shot - 'Achieving the Promise of Low-Cost Long Duration Energy Storage' (Aug 2024)",
+            "url": "https://www.energy.gov/sites/default/files/2024-08/Achieving%20the%20Promise%20of%20Low-Cost%20Long%20Duration%20Energy%20Storage_FINAL_08052024.pdf"
+          },
+          "url_resolves": true,
+          "source_is_primary": true,
+          "consistent_with_our_value": true,
+          "flag": ""
+        },
+        {
+          "dimension": "social_acceptance",
+          "our_value": 0.66,
+          "authoritative_value": "Pew Research Center (Apr 2026): 65% of Americans say the government should encourage production of wind and solar power, down from 72% in 2022 (Democrats 85%, Republicans 44%, down from 54% in 2022). Support is high but declining and increasingly polarized; local siting opposition is rising.",
+          "primary_source": {
+            "name": "Pew Research Center - 'Americans' Shifting Views on Energy Issues' (Apr 3, 2026)",
+            "url": "https://www.pewresearch.org/science/2026/04/03/americans-shifting-views-on-energy-issues/"
+          },
+          "url_resolves": true,
+          "source_is_primary": true,
+          "consistent_with_our_value": true,
+          "flag": ""
+        },
+        {
+          "dimension": "installed_capacity",
+          "our_value": 0.78,
+          "authoritative_value": "IRENA Renewable Capacity Statistics 2025: at end-2024, cumulative solar PV ~1,865 GW and wind ~1,133 GW (combined ~3,000 GW); 2024 additions were dominated by solar (+32.2%) and wind (+11.1%). Solar+wind are the world's most-deployed new-build sources. Note: the long-duration storage component has a very small installed base (US battery storage ~26 GW end-2024, mostly short-duration), so the score reflects the variable-generation side, not LDES.",
+          "primary_source": {
+            "name": "IRENA - Renewable Capacity Statistics 2025 (Mar 2025)",
+            "url": "https://www.irena.org/Publications/2025/Mar/Renewable-capacity-statistics-2025"
+          },
+          "url_resolves": true,
+          "source_is_primary": true,
+          "consistent_with_our_value": true,
+          "flag": "IRENA pages and PDF returned HTTP 403 / binary to the fetcher and could not be parsed directly; the ~1,865 GW solar / ~1,133 GW wind end-2024 figures were corroborated across multiple IRENA-citing secondary reports (pv-magazine, Our World in Data which carries the IRENA series). URL resolves (the publication exists) but was not machine-readable in this environment - flag for a manual confirm of the exact GW values against the IRENA PDF."
+        },
+        {
+          "dimension": "build_speed",
+          "our_value": 0.6,
+          "authoritative_value": "Physical construction of utility-scale solar/wind is fast (~1-2 yr), but total development is long: LBNL 'Queued Up 2024' reports median interconnection wait ~5 yr for 2023 projects (up from <2 yr pre-2008) and only ~19% of projects (14% of capacity) from 2000-2018 had been built by end-2023. Adding long-duration storage extends timelines further. Net: moderate.",
+          "primary_source": {
+            "name": "Lawrence Berkeley National Laboratory - 'Queued Up: 2024 Edition' interconnection queue study",
+            "url": "https://emp.lbl.gov/publications/queued-2024-edition-characteristics"
+          },
+          "url_resolves": true,
+          "source_is_primary": true,
+          "consistent_with_our_value": true,
+          "flag": ""
+        },
+        {
+          "dimension": "cost",
+          "our_value": 0.62,
+          "authoritative_value": "Lazard LCOE+ June 2024 (v17.0): standalone utility-scale solar PV ~$61/MWh and onshore wind ~$50/MWh (cheapest new-build, 10th yr running). But the firming storage drives cost up: utility solar+storage $60-210/MWh and onshore wind+storage $45-133/MWh in 2024. Long-duration (multi-day/seasonal) storage for true 24/7 would sit at or above the top of those ranges. So the system is cheap as energy but expensive as firm 24/7 power - 0.62 (mid) is defensible.",
+          "primary_source": {
+            "name": "Lazard - Levelized Cost of Energy+ (LCOE+), June 2024 (v17.0)",
+            "url": "https://www.lazard.com/media/xemfey0k/lazards-lcoeplus-june-2024-_vf.pdf"
+          },
+          "url_resolves": true,
+          "source_is_primary": true,
+          "consistent_with_our_value": true,
+          "flag": ""
+        },
+        {
+          "dimension": "firmness",
+          "our_value": 0.55,
+          "authoritative_value": "Peer-reviewed/NREL system studies: solar+wind+storage can cover roughly the first ~90% of demand by managing hourly/daily variability, but the last ~10% requires overcoming seasonal cycles and multi-week low-resource events, needing large overbuild (e.g., ~1.33x) plus weeks of seasonal storage. Firmer than solar-alone, but well short of dispatchable thermal/nuclear/hydro for guaranteed 24/7. Moderate score is appropriate.",
+          "primary_source": {
+            "name": "Denholm et al., 'The challenges of achieving a 100% renewable electricity system in the United States,' Joule (2021)",
+            "url": "https://www.sciencedirect.com/science/article/pii/S2542435121001513"
+          },
+          "url_resolves": true,
+          "source_is_primary": true,
+          "consistent_with_our_value": true,
+          "flag": "Primary source is a peer-reviewed journal (Joule) rather than one of the preferred agency lists, but it is authoritative (NREL authors) and directly on-point; IRENA also published '24/7 renewables: The economics of firm solar and wind' (May 2026) as additional corroboration."
+        },
+        {
+          "dimension": "ride_through",
+          "our_value": 0.45,
+          "authoritative_value": "Solar, wind, and battery are inverter-based resources with no inherent rotational inertia; they rely on grid-forming inverters to provide synthetic inertia and fault ride-through. Grid-forming control is an emerging/maturing capability (voltage recovery ~300 ms, frequency held within ~+/-0.5 Hz in studies), but high-inverter, low-inertia grids remain more vulnerable to frequency/fault instability than synchronous-machine systems. A low ride-through score is well justified.",
+          "primary_source": {
+            "name": "NREL - grid-forming inverter / inverter-based resource grid stability research (and peer-reviewed grid-forming FRT literature, e.g. Scientific Reports 2025)",
+            "url": "https://www.nrel.gov/grid/research-areas/grid-forming-inverters"
+          },
+          "url_resolves": true,
+          "source_is_primary": true,
+          "consistent_with_our_value": true,
+          "flag": "Quantitative ride-through figures cited come from peer-reviewed grid-forming-inverter papers (Nature Scientific Reports 2025) rather than a single agency datasheet; NREL is the primary anchor for the underlying low-inertia/IBR stability characterization. Value direction (low) is solid; no single canonical number exists for a 0-1 ride-through metric."
+        },
+        {
+          "dimension": "low_carbon",
+          "our_value": 0.92,
+          "authoritative_value": "IPCC AR5/SRREN lifecycle median GHG: utility-scale solar PV ~48 gCO2eq/kWh (range 18-180), rooftop ~41 (26-60), onshore wind ~11 (7-56), offshore wind ~12 (8-35). Among the lowest-carbon sources; storage adds modest embodied/round-trip emissions. A near-top score is appropriate (slightly below pure wind/nuclear due to solar manufacturing + storage overhead).",
+          "primary_source": {
+            "name": "IPCC AR5 WG III, Annex III - lifecycle GHG emissions of electricity supply technologies (median values)",
+            "url": "https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf"
+          },
+          "url_resolves": true,
+          "source_is_primary": true,
+          "consistent_with_our_value": true,
+          "flag": ""
+        },
+        {
+          "dimension": "siting_flexibility",
+          "our_value": 0.45,
+          "authoritative_value": "Solar and wind are resource-constrained (require good insolation / wind regimes) and land-intensive (utility solar ~5-10 acres/MW; wind requires large spacing), and face growing local siting opposition and land-use tradeoffs. Cannot be sited arbitrarily near a load like a data center. A low-moderate siting score is well supported.",
+          "primary_source": {
+            "name": "Lawrence Berkeley National Laboratory - utility-scale solar land use & wind siting research (Land-Based Wind Market Report / utility-scale solar datasets)",
+            "url": "https://emp.lbl.gov/utility-scale-solar"
+          },
+          "url_resolves": true,
+          "source_is_primary": true,
+          "consistent_with_our_value": true,
+          "flag": "Siting flexibility is a qualitative composite (resource dependence + land footprint + local acceptance) with no single primary metric; LBNL land-use data and the resource-class structure of the NREL ATB support the low score, but it is an analyst judgment rather than a directly quoted figure."
+        },
+        {
+          "dimension": "energy_security",
+          "our_value": 0.93,
+          "authoritative_value": "IEA Renewables 2025 (via Carbon Brief) and Ember: wind/solar are domestically generated and fuel-free, cutting fossil-fuel import dependence for 107 countries; importers avoided ~700 Mt coal and ~400 bcm gas in 2023 and saved ~$1.3 trillion (2010-2023). IEA states renewables 'inherently strengthen energy supply security.' Storage further reduces import exposure. Very high score justified (only caveat: PV/battery hardware supply-chain concentration).",
+          "primary_source": {
+            "name": "IEA - Renewables 2025 (energy-security findings; reported via Carbon Brief and corroborated by Ember)",
+            "url": "https://www.iea.org/reports/renewables-2025"
+          },
+          "url_resolves": true,
+          "source_is_primary": true,
+          "consistent_with_our_value": true,
+          "flag": "Ember and IEA original pages returned 403 to the fetcher; the figures were confirmed via Carbon Brief's detailed write-up of the IEA Renewables 2025 report. IEA report URL resolves and is the genuine primary source; flagged only because direct machine-read of iea.org/ember-energy.org was blocked in this environment."
+        }
+      ],
+      "overall_note": "Overall the ten normalized scores are well-calibrated against authoritative primary sources and the values look internally consistent for a 24/7 data-center firm-power comparison. Strengths (high scores) are firmly supported: low_carbon (IPCC AR5: ~48 g/kWh solar, ~11 g/kWh wind), energy_security (IEA/Ember: fuel-free, domestic, cut imports for 100+ countries), and installed_capacity (IRENA: ~1,865 GW solar + ~1,133 GW wind end-2024). Weaknesses (low scores) are equally well-justified: ride_through (0.45 - inverter-based, no inherent inertia, grid-forming still maturing), siting_flexibility (0.45 - land-intensive, resource-dependent), and firmness (0.55 - covers ~90% of demand but the last 10%/seasonal mismatch needs large overbuild + LDES). cost (0.62) correctly reflects that standalone solar/wind is the cheapest energy (Lazard 2024: ~$61/~$50/MWh) but firming with storage pushes it to $45-210/MWh. tech_maturity (0.62) correctly down-weights for the nascent long-duration-storage component even though solar/wind generation is fully mature. social_acceptance (0.66) maps almost exactly onto Pew's 65% favorable.\n\nNo dimension shows a hallucinated or grossly wrong value. Sourcing caveats to note: (1) the NREL ATB 2024 website (atb.nrel.gov) and several IRENA/IEA/Ember pages returned HTTP 403 or unparseable binary to the WebFetch tool from this environment - the underlying publications are genuine and resolve, and every value was cross-confirmed via search summaries and/or independent secondary corroboration, but the exact ATB CAPEX/capacity-factor and IRENA GW figures should be manually re-confirmed against the source PDFs. (2) firmness, ride_through, and siting_flexibility rely partly on peer-reviewed literature / analyst composites rather than a single preferred-agency datapoint - acceptable given no canonical 0-1 metric exists, but they are interpretive. (3) For the companion-study existing-hydropower figures: the hydropower reservoir emission factor magnitude is corroborated - IPCC median ~24 gCO2eq/kWh and the G-res tool median ~23 gCO2eq/kWh across ~500 reservoirs, with a very wide range (boreal/temperate 3-70; tropical 8-6,647 g/kWh). This confirms the general magnitude of the study's per-region reservoir EFs (including why a few tropical/specific regions can be high), but the exact per-region EF, storage-share, and firm-coverage numbers are specific to that study and not independently reproducible from public literature."
+    },
+    {
+      "technology": "Unabated gas CCGT",
+      "checks": [
+        {
+          "dimension": "tech_maturity",
+          "our_value": 1,
+          "authoritative_value": "Fully commercial / mature: ~1,800 GW of gas capacity deployed globally; CCGT is the standard, most-deployed thermal generation technology (TRL 11, decades of commercial operation). NREL ATB 2024 treats NGCC as a mature commercial technology (sources NGCC cost/performance from DOE Office of Fossil Energy).",
+          "primary_source": {
+            "name": "NREL ATB 2024 - Fossil Energy Technologies",
+            "url": "https://atb.nrel.gov/electricity/2024/fossil_energy_technologies"
+          },
+          "url_resolves": true,
+          "source_is_primary": true,
+          "consistent_with_our_value": true,
+          "flag": ""
+        },
+        {
+          "dimension": "social_acceptance",
+          "our_value": 0.4,
+          "authoritative_value": "Pew Research (2020, 20-country survey): median 69% favor expanding natural gas vs 39% oil and 24% coal. Natural gas is the most publicly favored fossil fuel, but still a fossil fuel subject to climate-driven opposition and growing political polarization (US Pew 2024/2025).",
+          "primary_source": {
+            "name": "Pew Research Center - Natural gas viewed more positively than other fossil fuels",
+            "url": "https://www.pewresearch.org/short-reads/2020/10/19/natural-gas-viewed-more-positively-than-other-fossil-fuels-across-20-global-publics/"
+          },
+          "url_resolves": true,
+          "source_is_primary": true,
+          "consistent_with_our_value": true,
+          "flag": "Mildly conservative: gas is the MOST-favored fossil fuel (69% global median), so 0.4 sits at the low end; defensible relative to nuclear/renewables but arguably could be ~0.45-0.5."
+        },
+        {
+          "dimension": "installed_capacity",
+          "our_value": 1,
+          "authoritative_value": "~1,800 GW global gas capacity (Energy Institute/IEA); gas ~23% of global generation (~6,800 TWh) in 2024, second only to coal; largest single electricity source in the US since 2016. CCGT is by far the most-deployed firm dispatchable option among candidates.",
+          "primary_source": {
+            "name": "IEA - Global electricity generation by source, 2024",
+            "url": "https://www.iea.org/data-and-statistics/charts/global-electricity-generation-by-source-2024"
+          },
+          "url_resolves": true,
+          "source_is_primary": true,
+          "consistent_with_our_value": true,
+          "flag": ""
+        },
+        {
+          "dimension": "build_speed",
+          "our_value": 0.45,
+          "authoritative_value": "Construction of a CCGT block ~30 months (2.5 yrs); EIA AEO assumes ~3 yr lead time. However, current global gas-turbine order backlog adds a 3-5 year wait for new units, materially extending real-world timelines (EIA 2024/2025; industry reporting).",
+          "primary_source": {
+            "name": "EIA Today in Energy - Electric generators plan more natural gas-fired capacity",
+            "url": "https://www.eia.gov/todayinenergy/detail.php?id=65464"
+          },
+          "url_resolves": true,
+          "source_is_primary": true,
+          "consistent_with_our_value": true,
+          "flag": ""
+        },
+        {
+          "dimension": "cost",
+          "our_value": 0.78,
+          "authoritative_value": "Lazard LCOE+ June 2024: CCGT unsubsidized LCOE ~$76/MWh (up from $60 in 2021, $70 in 2023). Among the cheapest firm/dispatchable options (gas peaking $110-228/MWh; standalone storage $156-352/MWh). Cheaper than firm nuclear/coal+CCS; pricier than unfirmed wind/solar.",
+          "primary_source": {
+            "name": "Lazard's Levelized Cost of Energy+ June 2024",
+            "url": "https://www.lazard.com/media/xemfey0k/lazards-lcoeplus-june-2024-_vf.pdf"
+          },
+          "url_resolves": true,
+          "source_is_primary": true,
+          "consistent_with_our_value": true,
+          "flag": "Lazard PDF resolves but is binary/un-parseable by fetch; $76/MWh value corroborated via Utility Dive reporting of the same report. Score 0.78 (favorable) is consistent for one of the lowest-cost firm options."
+        },
+        {
+          "dimension": "firmness",
+          "our_value": 0.95,
+          "authoritative_value": "EIA: nearly all gas plants are dispatchable and can be reliably called on to meet demand; fleet capacity factor ~57% (2022/2023), newest units 64-66% (utilization-limited, not capability-limited). CCGT can ramp and sustain output on demand - high firm/dispatchable capability, subject to fuel delivery.",
+          "primary_source": {
+            "name": "EIA Today in Energy - Combined-cycle plants increased utilization",
+            "url": "https://www.eia.gov/todayinenergy/detail.php?id=60984"
+          },
+          "url_resolves": true,
+          "source_is_primary": true,
+          "consistent_with_our_value": true,
+          "flag": ""
+        },
+        {
+          "dimension": "ride_through",
+          "our_value": 0.3,
+          "authoritative_value": "CCGT uses large synchronous generators that inherently provide rotational inertia, short-circuit current, reactive power and fault/voltage ride-through - these are recognized grid-strength STRENGTHS (ESIG, Siemens Energy, POWER). On the engineering merits gas turbines are among the BEST ride-through/grid-forming resources.",
+          "primary_source": {
+            "name": "ESIG - Grid-Forming Technology in Energy Systems Integration",
+            "url": "https://www.esig.energy/wp-content/uploads/2024/10/ESIG-GFM-report-2022.pdf"
+          },
+          "url_resolves": true,
+          "source_is_primary": true,
+          "consistent_with_our_value": false,
+          "flag": "INCONSISTENT/likely wrong: a synchronous CCGT provides strong inherent inertia and fault ride-through, so a LOW score of 0.3 contradicts the engineering. If the metric is electrical ride-through it should be high (~0.85-0.95); if it is meant to capture fuel-supply ride-through (gas freeze-offs, pipeline disruption per Winter Storm Uri/Elliott) the dimension is mislabeled. Recommend re-checking definition."
+        },
+        {
+          "dimension": "low_carbon",
+          "our_value": 0.1,
+          "authoritative_value": "IPCC AR5 WG3 Annex III Table A.III.2: natural gas combined cycle lifecycle median 490 gCO2eq/kWh (range 410-650). Second-highest after coal (820); far above solar (48), nuclear (12), wind (11). Unabated gas is a high-carbon source.",
+          "primary_source": {
+            "name": "IPCC AR5 WG3 Annex III (Technology-specific parameters, Table A.III.2)",
+            "url": "https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf"
+          },
+          "url_resolves": true,
+          "source_is_primary": true,
+          "consistent_with_our_value": true,
+          "flag": "IPCC PDF resolves (binary, not parseable by fetch); 490 g median / 410-650 range corroborated via secondary tabulation citing the same IPCC table. Score 0.1 (low-carbon = unfavorable) is correct - gas is 2nd-worst emitter."
+        },
+        {
+          "dimension": "siting_flexibility",
+          "our_value": 0.8,
+          "authoritative_value": "CCGT can be sited widely but requires gas pipeline / LNG access and cooling water; far more siting-flexible than hydro/geothermal/nuclear, slightly constrained vs onsite fuel-free options. EIA/industry: gas plants commonly co-located with load and pipeline infrastructure.",
+          "primary_source": {
+            "name": "EIA Today in Energy - Use of natural gas-fired generation by region",
+            "url": "https://www.eia.gov/todayinenergy/detail.php?id=61444"
+          },
+          "url_resolves": true,
+          "source_is_primary": true,
+          "consistent_with_our_value": true,
+          "flag": "Qualitative dimension - no single primary numeric source. 0.8 is reasonable given pipeline/water dependence; supported by EIA regional data rather than a dedicated metric."
+        },
+        {
+          "dimension": "energy_security",
+          "our_value": 0.3,
+          "authoritative_value": "Unabated gas is fuel-dependent: exposed to gas price volatility, import/LNG dependence (Strait of Hormuz chokepoint), and correlated supply-and-demand failures in extreme weather (e.g., ~21 GW gas outages in a 34-state winter event). IEA/IEEFA flag gas dependence as an energy-security risk.",
+          "primary_source": {
+            "name": "IEEFA - Germany's gas dependence: an energy security risk",
+            "url": "https://ieefa.org/resources/germanys-gas-dependence-energy-security-risk"
+          },
+          "url_resolves": true,
+          "source_is_primary": false,
+          "consistent_with_our_value": true,
+          "flag": "Source is a credible analyst NGO (IEEFA), not a top-tier primary like IEA/EIA; the low score (0.3) is well-supported by the fuel-import/price-volatility evidence. Consider citing IEA gas-security analysis for a stronger primary."
+        }
+      ],
+      "overall_note": "Verified all ten dimensions against primary/authoritative sources (NREL ATB 2024, IEA, EIA, Lazard LCOE+ 2024, IPCC AR5 WG3 Annex III, Pew Research). All cited URLs resolve. Two PDFs (Lazard 2024, IPCC AR5 Annex III) load but return binary that the fetch model cannot parse - their key figures ($76/MWh CCGT LCOE; 490 gCO2eq/kWh median) were corroborated via independent reporting/tabulations of the same documents, so the values are sound and the URLs are correct primary sources. Most scores are well-calibrated and internally consistent: tech_maturity=1, installed_capacity=1, cost=0.78, firmness=0.95, low_carbon=0.1, energy_security=0.3 all align with the evidence. ONE LIKELY ERROR: ride_through=0.3. A synchronous CCGT is one of the strongest providers of inertia, short-circuit current, and electrical fault/voltage ride-through, so a low score contradicts the engineering; if the intended meaning is electrical ride-through it should be high (~0.85-0.95), and if it is meant to capture fuel-supply resilience (gas freeze-offs/pipeline failures in Uri/Elliott-type events) the dimension is mislabeled and overlaps energy_security - recommend clarifying the definition and re-scoring. Minor notes: social_acceptance=0.4 is slightly conservative (gas is the most-favored fossil fuel at 69% global median); energy_security and siting_flexibility lean on analyst/qualitative sources rather than a single top-tier primary metric. Companion-study hydro figures: a reservoir lifecycle EF on the order of ~170 gCO2eq/kWh global mean (Scherer & Pfister) with a wide literature range is consistent in magnitude with reservoir-EF claims, but the exact value used is from this study and was not independently re-derived here."
+    }
+  ],
+  "developing": {
+    "dimension": "Developing-world suitability (feasibility and benefit of each firm-power option for emerging and developing economies)",
+    "rubric": "Equal-weight composite (0.25 each) of four sub-criteria \u2014 (a) resource availability in EMDEs, (b) financeability under the EMDE high-cost-of-capital penalty (CoC 2-3x advanced economies; IRENA WACC ~3.8% EU vs ~12% Africa, which inflates LCOE of capital-heavy options), (c) technical/regulatory/workforce/supply-chain barriers (lower=better), and (d) domestic, fuel-free value \u2014 each rated 0-1 from the cited evidence then averaged; 1 = most suitable for the developing world, 0 = least.",
+    "scores": [
+      {
+        "technology": "Existing hydropower",
+        "raw_value": "Resource: ~60% of economically viable hydro potential untapped is in EMDEs; ~150 GW of new capacity to 2030 mostly in EMDEs; Africa ~90% of on-river potential untapped. Financeability: lowest-cost source in many markets (~USD 0.06/kWh) but capital-heavy/long-lead, exposed to high CoC. Barriers: mature tech, low fuel/supply-chain barrier, but governance/environmental/social and large-project execution risks. Domestic value: domestic, fuel-free, price-stable.",
+        "score_0_1": 0.85,
+        "rationale": "The developing world is hydro-rich (\u224860% of remaining economically viable potential lies in EMDEs) and existing hydro is domestic, fuel-free, lowest-cost and mature, making it the most suitable firm option \u2014 though long lead times, large capex exposed to high cost of capital, and governance/environmental barriers keep it honestly below a perfect score.",
+        "sources": [
+          {
+            "name": "IEA Hydropower Special Market Report \u2014 Executive summary",
+            "url": "https://www.iea.org/reports/hydropower-special-market-report/executive-summary"
+          },
+          {
+            "name": "IHA / IRENA: hydropower remains one of the cheapest sources of electricity",
+            "url": "https://www.hydropower.org/news/hydropower-remains-one-of-the-cheapest-sources-of-electricity-new-irena-report-highlights-evolving-role-of-hydropower"
+          },
+          {
+            "name": "IHA / Engineering News: Africa ~90% of on-river hydropower potential untapped",
+            "url": "https://www.engineeringnews.co.za/article/africa-added-2-gw-of-hydropower-last-year-but-iha-says-90-of-on-river-potential-untapped-2024-06-12"
+          }
+        ]
+      },
+      {
+        "technology": "Solar plus wind with 4-hour battery",
+        "raw_value": "Resource: solar/wind abundant across most EMDEs; African solar fastest-growing (~25%/yr). Financeability: cheapest new generation (onshore wind USD 0.034/kWh, solar USD 0.043/kWh; batteries -93% since 2010 to ~USD 192/kWh) but modular/bankable, though high CoC still inflates LCOE (WACC ~12% Africa vs ~3.8% Europe). Barriers: low \u2014 modular, fast-build, but hardware import-dependent and 4h gives only limited firmness. Domestic value: domestic generation, fuel-free, but equipment imported.",
+        "score_0_1": 0.72,
+        "rationale": "Solar+wind is the cheapest, most modular and bankable new-build option in EMDEs and battery costs have collapsed, but the persistent high cost of capital still inflates its LCOE and a 4-hour battery provides only limited firming, so it scores high but below mature domestic hydro.",
+        "sources": [
+          {
+            "name": "IRENA: 91% of new renewable projects now cheaper than fossil fuels (2024 cost data + Africa WACC ~12% vs Europe ~3.8%)",
+            "url": "https://www.irena.org/News/pressreleases/2025/Jul/91-Percent-of-New-Renewable-Projects-Now-Cheaper-Than-Fossil-Fuels-Alternatives"
+          },
+          {
+            "name": "World Bank ESMAP: storage / LDES powering developing countries (African solar ~25%/yr growth)",
+            "url": "https://www.esmap.org/news/long_duration_energy_storage_powering_lives_and_opportunities_in_developing_countries"
+          }
+        ]
+      },
+      {
+        "technology": "Solar plus wind with long-duration storage",
+        "raw_value": "Resource: same abundant solar/wind as 4h case. Financeability: RE cheap but LDES still expensive and capital-intensive, penalized by high CoC; World Bank ESMAP supporting scale-up because not yet affordable. Barriers: LDES technologies still early/emerging commercial maturity, limited track record in EMDEs, supply-chain immature. Domestic value: domestic, fuel-free if deployed, but technology import-dependent and unproven at scale.",
+        "score_0_1": 0.6,
+        "rationale": "It pairs abundant cheap solar+wind with the deep firming EMDEs need, but long-duration storage is still early-stage, costly and largely unproven at scale in the developing world (World Bank ESMAP is actively de-risking it), so commercial-maturity and financing barriers pull it below the 4-hour-battery option.",
+        "sources": [
+          {
+            "name": "World Bank ESMAP: Long Duration Energy Storage \u2014 powering lives in developing countries",
+            "url": "https://www.esmap.org/news/long_duration_energy_storage_powering_lives_and_opportunities_in_developing_countries"
+          },
+          {
+            "name": "World Bank ESMAP: Planning for LDES investments in Sub-Saharan Africa",
+            "url": "https://www.esmap.org/blogs/planning-for-long-duration-energy-storage-ldes-investments-in-sub-saharan-africa"
+          }
+        ]
+      },
+      {
+        "technology": "Geothermal including enhanced (EGS)",
+        "raw_value": "Resource: large but geographically concentrated \u2014 East African Rift, Indonesia/Ring of Fire (Indonesia 5+ GW, Kenya/Ethiopia ~900 MW); most EMDEs lack high-grade resource. Financeability: drilling = up to half of project cost with high pre-resource risk, heavily penalized by high CoC; needs public de-risking. Barriers: high upfront exploration risk; EGS not yet commercial. Domestic value: domestic, fuel-free and firm where resource exists.",
+        "score_0_1": 0.45,
+        "rationale": "Where the resource exists (East African Rift, Indonesia) geothermal is an excellent domestic, fuel-free firm source, but it is geographically confined to tectonic zones, carries high upfront drilling/exploration risk worsened by the EMDE cost of capital, and EGS remains pre-commercial, limiting broad suitability.",
+        "sources": [
+          {
+            "name": "IRENA: Geothermal development in Eastern Africa",
+            "url": "https://www.irena.org/publications/2020/Nov/Geothermal-development-in-Eastern-Africa"
+          },
+          {
+            "name": "IRENA REmap Indonesia \u2014 geothermal potential",
+            "url": "https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2017/Mar/IRENA_REmap_Indonesia_report_2017.pdf"
+          }
+        ]
+      },
+      {
+        "technology": "Unabated gas CCGT",
+        "raw_value": "Resource: depends on domestic gas; most importing EMDEs rely on LNG. Financeability: moderate capex (least CoC-sensitive of the firm options) but exposed to volatile fuel costs (Thailand paid ~USD 25/MMBtu in 2022; LNG >2x coal). Barriers: technology mature, but LNG import infrastructure + affordability/security barriers; stranded-asset risk (Pakistan halted new LNG plants). Domestic value: low \u2014 fuel-import dependent, exposed to FX and price shocks, not fuel-free.",
+        "score_0_1": 0.4,
+        "rationale": "CCGT is mature with relatively low capex (so least hurt by high cost of capital), but for most EMDEs it means LNG-import dependence with severe price volatility and affordability crises (e.g. Pakistan halting new LNG plants, Thailand's ~USD 25/MMBtu shock) plus stranded-asset risk, undermining its domestic, fuel-free value.",
+        "sources": [
+          {
+            "name": "IEEFA: Global LNG Outlook 2024-2028 (affordability, stranded-asset risk)",
+            "url": "https://ieefa.org/resources/global-lng-outlook-2024-2028"
+          },
+          {
+            "name": "CGEP Columbia: Asia's Gas Shock \u2014 coal, curtailment, competing for LNG",
+            "url": "https://www.energypolicy.columbia.edu/asias-gas-shock-playbook-coal-curtailment-and-competing-for-lng/"
+          }
+        ]
+      },
+      {
+        "technology": "Nuclear including SMR",
+        "raw_value": "Resource: fuel not domestic for most EMDEs; uranium/fuel-cycle imported. Financeability: most capital-intensive firm option, hardest hit by EMDE cost of capital (2-3x advanced economies; financing can be half of LCOE); Ghana etc. lack a financing model. Barriers: highest \u2014 regulatory frameworks, safeguards, specialized workforce and supply chains often absent; no SMR yet commercially deployed in newcomer EMDEs. Domestic value: low near-term; firm but import-dependent fuel/tech.",
+        "score_0_1": 0.25,
+        "rationale": "Nuclear (and not-yet-commercial SMRs) is the most capital-intensive firm option and therefore the most penalized by the EMDE cost of capital that is 2-3x advanced economies, compounded by the steepest regulatory, workforce, supply-chain and financing-model barriers for newcomer countries, making it the least suitable near-term for the developing world.",
+        "sources": [
+          {
+            "name": "IEA Cost of Capital Observatory (CoC in EMDEs 2-3x advanced economies)",
+            "url": "https://www.iea.org/reports/cost-of-capital-observatory"
+          },
+          {
+            "name": "IEA: Reducing the Cost of Capital \u2014 Executive summary (financing ~half of LCOE in EMDEs)",
+            "url": "https://www.iea.org/reports/reducing-the-cost-of-capital/executive-summary"
+          },
+          {
+            "name": "World Bank & IAEA formalize partnership on nuclear for development (financing/barriers for newcomers)",
+            "url": "https://www.worldbank.org/en/news/press-release/2025/06/26/world-bank-group-iaea-formalize-partnership-to-collaborate-on-nuclear-energy-for-development"
+          }
+        ]
+      }
+    ]
+  }
+}

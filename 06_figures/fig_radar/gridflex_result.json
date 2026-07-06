@@ -1,0 +1,109 @@
+{
+  "dimension": "Grid flexibility and ancillary services (for a power system serving 24/7 data centers): synchronous/rotational inertia + black-start + fast ramping/load-following + frequency and voltage regulation",
+  "rubric": "0-1, higher = more complete and faster grid-flexibility/ancillary-service package. Anchors: 1.0 = full native suite (true synchronous inertia + black-start + very fast ramp + frequency & voltage regulation) as a routinely dispatched provider (reservoir hydro). ~0.85 = synchronous inertia + black-start + good (sub-hydro) ramp + freq/voltage control (CCGT). ~0.6 = excellent sub-second frequency response, voltage support and (grid-forming) black-start, but only synthetic/emulated not true inertia and energy-/SOC-limited (storage). ~0.3-0.4 = synchronous inertia present but slow ramp, weak/limited black-start, baseload-oriented (nuclear, geothermal). Score reflects completeness x speed; true rotating inertia and black-start weighted heavily because data-center grids need ride-through and restoration.",
+  "scores": [
+    {
+      "technology": "Existing hydropower",
+      "raw_value": "Full native suite: true synchronous (rotating) inertia; ~40% of all US black-start units are hydro turbines; very fast ramp (seconds, full range); primary frequency response, secondary frequency regulation, reactive power / voltage control. DOE: the 'ideal' black-start unit (minimal time, fuel, equipment) and routinely compensated for inertial and primary frequency response.",
+      "score_0_1": 1,
+      "rationale": "Reservoir hydropower provides the most complete and fastest set of grid-stabilising services - true synchronous inertia, dominant black-start capability, near-instant ramping, and full frequency/voltage control - all delivered as a routinely dispatched provider.",
+      "sources": [
+        {
+          "name": "DOE Hydropower Value Study (Jan 2021): inertial/primary frequency response, reactive power, black-start; ~40% of US black-start units are hydro",
+          "url": "https://www.energy.gov/sites/prod/files/2021/01/f82/hydropower-value-study-v2.pdf",
+          "url_resolves": true
+        },
+        {
+          "name": "DOE/ORNL Hydropower Plants as Black Start Resources (May 2019): hydro is the 'ideal' black-start unit (minimal time/fuel/equipment, large inertia, high ramp rate, reactive power)",
+          "url": "https://www.energy.gov/sites/prod/files/2019/05/f62/Hydro-Black-Start_May2019.pdf",
+          "url_resolves": true
+        }
+      ]
+    },
+    {
+      "technology": "Nuclear including SMR",
+      "raw_value": "Large synchronous machine -> provides true rotating inertia and reactive/voltage support; but traditionally baseload. Ramp limited to ~5%/min where designed for flexibility (France ~900 MW in ~30 min on a 1300 MW unit, freq control +/-7% RTP); most fleets run constant-power with slow, pre-planned changes and reduced flexibility late in fuel cycle. Not a standard black-start resource. SMRs similar synchronous physics, still slow/baseload-oriented.",
+      "score_0_1": 0.35,
+      "rationale": "Nuclear contributes genuine synchronous inertia and voltage support but ramps slowly and is baseload-oriented with weak fast-flexibility and essentially no black-start role, so its ancillary-service package is partial.",
+      "sources": [
+        {
+          "name": "DOE Office of Nuclear Energy: 3 Ways Nuclear is More Flexible Than You Might Think (constant-power baseload; output reductions need planning/time)",
+          "url": "https://www.energy.gov/ne/articles/3-ways-nuclear-more-flexible-you-might-think",
+          "url_resolves": true
+        },
+        {
+          "name": "POWER Magazine: Flexible Operation of Nuclear Power Plants Ramps Up (ramp ~5%/min, France load-following + frequency control, traditionally baseload)",
+          "url": "https://www.powermag.com/flexible-operation-of-nuclear-power-plants-ramps-up/",
+          "url_resolves": true
+        }
+      ]
+    },
+    {
+      "technology": "Geothermal including enhanced (EGS)",
+      "raw_value": "Synchronous generators -> provide true inertia and reactive/voltage support; capable of regulation, load-following, spinning/non-spinning reserve. Binary/ORC plants can ramp 15-30%/min (flash ~2-5%/min), but in practice ~almost all geothermal runs baseload (GEA found two main reasons it stays baseload); flexible operation rare and contract-dependent; not a typical black-start resource.",
+      "score_0_1": 0.4,
+      "rationale": "Geothermal is synchronous (true inertia, voltage support) and technically capable of frequency regulation and decent ORC ramping, but it is overwhelmingly operated as baseload with limited black-start, so its flexibility is latent rather than routinely delivered.",
+      "sources": [
+        {
+          "name": "Geothermal Energy Association: Firm and Flexible Power Services from Geothermal (ORC ramp 15-30%/min, flash 2-5%/min; regulation, spinning reserve; mostly baseload in practice)",
+          "url": "https://geothermal.org/sites/default/files/2021-02/Firm_and_Flexible_Power_Services_from_Geothermal.pdf",
+          "url_resolves": true
+        },
+        {
+          "name": "IRENA Power System Flexibility for the Energy Transition Part 1 (technology flexibility hierarchy; hydro/gas flexible, baseload sources less so)",
+          "url": "https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2018/Nov/IRENA_Power_system_flexibility_1_2018.pdf",
+          "url_resolves": true
+        }
+      ]
+    },
+    {
+      "technology": "Solar plus wind with 4-hour battery",
+      "raw_value": "Inverter-based: excellent sub-second / millisecond fast frequency response (FFR) and reactive/voltage support; grid-forming (GFM) inverters can island and provide black-start and 'synthetic'/emulated inertia and system strength. But ESIG/NERC: IBRs do NOT provide true rotating inertia (GFL contributes none; GFM emulates), and grids still rely on synchronous machines for inertia/system strength; battery is energy-/SOC-limited (4 h) so sustained services and multi-hour ride-through are constrained.",
+      "score_0_1": 0.62,
+      "rationale": "Solar+wind with a 4 h battery (especially grid-forming) delivers best-in-class fast frequency response, voltage support and emerging black-start, but provides only synthetic/emulated rather than true inertia and is energy/duration limited, leaving its package strong-but-incomplete.",
+      "sources": [
+        {
+          "name": "ESIG / NARUC (Matevosyan): Grid-Forming Battery Storage (synchronous machines provide true inertia; GFL IBRs contribute no inertia/system strength; GFM can island/black-start; system still needs synchronous machines)",
+          "url": "https://pubs.naruc.org/pub/171BC89E-099E-F2D2-0F81-4ADE3FA81121",
+          "url_resolves": true
+        }
+      ]
+    },
+    {
+      "technology": "Solar plus wind with long-duration storage",
+      "raw_value": "Same inverter-based services as the 4 h case (sub-second FFR, voltage support, GFM black-start, synthetic/emulated inertia) with much longer energy duration (DOE LDES >=10 h), so sustained reserves/ride-through and multi-day backup are stronger. Still no true rotating inertia (synthetic only) and dependent on power-electronics; some LDES (flow, CAES, iron-air) have slower power response than Li-ion.",
+      "score_0_1": 0.6,
+      "rationale": "Long-duration storage gives the same fast inverter-based services as a 4 h battery plus far greater energy endurance for sustained reserves and restoration, but still substitutes synthetic for true inertia, so it remains a near-complete (not complete) package and some LDES chemistries respond more slowly.",
+      "sources": [
+        {
+          "name": "ESIG / NARUC (Matevosyan): Grid-Forming Battery Storage (IBRs provide emulated, not true, inertia; GFM black-start; system strength caveats)",
+          "url": "https://pubs.naruc.org/pub/171BC89E-099E-F2D2-0F81-4ADE3FA81121",
+          "url_resolves": true
+        },
+        {
+          "name": "IRENA Power System Flexibility for the Energy Transition Part 1 (storage/flexibility roles; inertial response from synchronous machines)",
+          "url": "https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2018/Nov/IRENA_Power_system_flexibility_1_2018.pdf",
+          "url_resolves": true
+        }
+      ]
+    },
+    {
+      "technology": "Unabated gas CCGT",
+      "raw_value": "Synchronous generation -> true rotating inertia and reactive/voltage support; firm dispatchable with good ramping (~10 MW/min class, faster on modern/flexible designs), frequency control and spinning reserve; can be configured for black-start but slower/less standard than hydro (and warm-start/min-load constraints). Overall near-full suite but ramp and start are slower than hydro/storage FFR.",
+      "score_0_1": 0.85,
+      "rationale": "CCGT provides true synchronous inertia, voltage support, frequency regulation and firm dispatchable ramping (with optional black-start), giving a near-complete grid-flexibility package that is slightly slower to ramp and restart than reservoir hydro.",
+      "sources": [
+        {
+          "name": "ASME GT2021: Ancillary Services Potential for Flexible Combined Cycles (CCGT spinning reserve, frequency control, ramp-rate-driven ancillary participation)",
+          "url": "https://asmedigitalcollection.asme.org/GT/proceedings-abstract/GT2021/84966/V004T06A015/1120003",
+          "url_resolves": true
+        },
+        {
+          "name": "IRENA Power System Flexibility for the Energy Transition Part 1 (gas-fired generation among flexible/dispatchable technologies)",
+          "url": "https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2018/Nov/IRENA_Power_system_flexibility_1_2018.pdf",
+          "url_resolves": true
+        }
+      ]
+    }
+  ]
+}

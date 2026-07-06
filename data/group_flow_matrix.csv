@@ -1,0 +1,15 @@
+scenario,src_group,dc_group,delivered_mw
+A,developing,developing,5726.114
+A,emerging,emerging,39329.875
+A,emerging,developed,1384.502
+A,emerging,unclassified,2921.987
+A,developed,emerging,0.193
+A,developed,developed,57376.946
+A,developed,unclassified,1360.569
+B,developing,developing,5726.114
+B,emerging,emerging,39344.011
+B,emerging,developed,1391.498
+B,emerging,unclassified,2915.099
+B,developed,emerging,1.642
+B,developed,developed,57503.2
+B,developed,unclassified,1367.457

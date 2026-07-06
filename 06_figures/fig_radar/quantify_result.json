@@ -1,0 +1,707 @@
+[
+  {
+    "dimension": "installed_capacity",
+    "metric": "Effective firm capacity already built globally (GW) = global installed nameplate capacity (end-2024) x technology capacity credit (firm-capacity contribution / ELCC capacity value)",
+    "normalization": "Log10 of effective firm capacity in GW, with fixed end-points: 1 GW maps to 0 and 1000 GW maps to 1. score = clip( log10(firm_GW) / 3 , 0, 1 ). (So 10 GW -> 0.33, 100 GW -> 0.67, 1000 GW -> 1.0.) Capacity credits used: reservoir hydro 50% (moderate-high, reservoir-weighted), nuclear 95%, geothermal 90%, gas CCGT 80% (all per PJM ELCC class ratings / baseload capacity factors), solar+wind blended ~13% (ELCC ~8-20%); 4h battery firms only its short duration so the portfolio stays low; long-duration storage portfolios are essentially unbuilt globally (sub-GW of non-pumped LDES) so their delivered firm capacity is near zero.",
+    "scores": [
+      {
+        "technology": "Existing hydropower",
+        "metric_value": "~642 GW firm (1283 GW nameplate renewable hydro, excl. pumped storage, x ~50% reservoir capacity credit)",
+        "score_0_1": 0.936,
+        "rationale": "Largest single firm-capacity fleet after gas: huge nameplate (1283 GW) with moderate-high reservoir capacity value, derated for run-of-river/seasonal limits.",
+        "sources": [
+          {
+            "name": "IRENA Renewable Capacity Highlights 2025 (end-2024: 1283 GW renewable hydro, excl. 142 GW pumped storage)",
+            "url": "https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2025/Mar/IRENA_DAT_RE_Capacity_Highlights_2025.pdf",
+            "url_resolves": true
+          },
+          {
+            "name": "PJM ELCC Class Ratings 2026/27 BRA (Hydro Intermittent 38-40%; reservoir hydro higher)",
+            "url": "https://www.pjm.com/-/media/DotCom/planning/res-adeq/elcc/2026-27-bra-elcc-class-ratings.pdf",
+            "url_resolves": true
+          }
+        ]
+      },
+      {
+        "technology": "Nuclear including SMR",
+        "metric_value": "~358 GW firm (377 GW nameplate, 417 reactors, x 95% capacity credit)",
+        "score_0_1": 0.851,
+        "rationale": "Large dispatchable baseload fleet with near-full capacity credit (PJM nuclear 95%); SMR contribution still negligible in 2024 nameplate.",
+        "sources": [
+          {
+            "name": "IAEA / WNA: 417 reactors, ~377 GW operational end-2024",
+            "url": "https://www.iaea.org/newscenter/pressreleases/iaea-raises-nuclear-power-projections-for-fifth-consecutive-year",
+            "url_resolves": true
+          },
+          {
+            "name": "PJM ELCC Class Ratings (Nuclear 95%)",
+            "url": "https://www.pjm.com/-/media/DotCom/planning/res-adeq/elcc/2026-27-bra-elcc-class-ratings.pdf",
+            "url_resolves": true
+          }
+        ]
+      },
+      {
+        "technology": "Geothermal including enhanced (EGS)",
+        "metric_value": "~12.9 GW firm (14.3 GW nameplate x ~90% baseload capacity credit)",
+        "score_0_1": 0.37,
+        "rationale": "High capacity credit (baseload, ~90% capacity factor) but tiny global nameplate (14 GW), so absolute firm capacity is small; EGS still pre-commercial.",
+        "sources": [
+          {
+            "name": "IRENA Renewable Capacity Highlights 2025 (geothermal 14.3 GW end-2024)",
+            "url": "https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2025/Mar/IRENA_DAT_RE_Capacity_Highlights_2025.pdf",
+            "url_resolves": true
+          },
+          {
+            "name": "NREL / Stanford: geothermal baseload capacity factor >90%",
+            "url": "https://understand-energy.stanford.edu/energy-resources/renewable-energy/geothermal-energy",
+            "url_resolves": true
+          }
+        ]
+      },
+      {
+        "technology": "Solar plus wind with 4-hour battery",
+        "metric_value": "~390 GW firm (1865 GW solar + 1133 GW wind = ~2998 GW nameplate x ~13% blended capacity credit)",
+        "score_0_1": 0.864,
+        "rationale": "Massive nameplate (~3000 GW) but a 4h battery only firms the evening peak; blended ELCC ~8-20% (solar 8-11%, wind 13-41%) collapses effective firm capacity to ~13% of nameplate.",
+        "sources": [
+          {
+            "name": "IRENA Renewable Capacity Highlights 2025 (solar 1865 GW, wind 1133 GW end-2024)",
+            "url": "https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2025/Mar/IRENA_DAT_RE_Capacity_Highlights_2025.pdf",
+            "url_resolves": true
+          },
+          {
+            "name": "PJM ELCC Class Ratings (Fixed solar 8%, Tracking solar 11%, Onshore wind 41%, 4-hr Storage 50%)",
+            "url": "https://www.pjm.com/-/media/DotCom/planning/res-adeq/elcc/2026-27-bra-elcc-class-ratings.pdf",
+            "url_resolves": true
+          },
+          {
+            "name": "Capacity credit (Wikipedia): GB solar ~1.2%, onshore wind ~8%; values fall with penetration",
+            "url": "https://en.wikipedia.org/wiki/Capacity_credit",
+            "url_resolves": true
+          }
+        ]
+      },
+      {
+        "technology": "Solar plus wind with long-duration storage",
+        "metric_value": "~2 GW firm (solar+wind paired with deployed non-pumped LDES, which is sub-GW globally)",
+        "score_0_1": 0.1,
+        "rationale": "As a firmed system it is essentially unbuilt: utility battery fleet is ~124 GW but mostly 4h, and true long-duration (8h+, non-PSH) storage is sub-GW, so almost no firm VRE has actually been delivered this way.",
+        "sources": [
+          {
+            "name": "IEA Global Energy Review (utility battery ~124 GW end-2024, ~90% LFP, mostly short-duration)",
+            "url": "https://www.iea.org/reports/global-energy-review-2026/technology-battery-storage",
+            "url_resolves": true
+          },
+          {
+            "name": "PJM ELCC Class Ratings (10-hr Storage 72%, 4-hr 50% - longer duration earns more credit but is barely deployed)",
+            "url": "https://www.pjm.com/-/media/DotCom/planning/res-adeq/elcc/2026-27-bra-elcc-class-ratings.pdf",
+            "url_resolves": true
+          },
+          {
+            "name": "UCS: ELCC of storage rises with duration but declines with penetration",
+            "url": "https://blog.ucs.org/mark-specht/to-understand-energy-storage-you-must-understand-elcc/",
+            "url_resolves": true
+          }
+        ]
+      },
+      {
+        "technology": "Unabated gas CCGT",
+        "metric_value": "~800 GW firm (~1000 GW CCGT nameplate, ~55% of ~1800 GW global gas-fired, x ~80% capacity credit)",
+        "score_0_1": 0.968,
+        "rationale": "Largest delivered firm-capacity fleet: very large dispatchable nameplate with high (~80%) capacity credit per PJM Gas Combined Cycle ELCC.",
+        "sources": [
+          {
+            "name": "Energy Institute / IEA: ~1800 GW global gas-fired capacity end-2024 (CCGT ~55-60%)",
+            "url": "https://www.globalelectricity.org/natural-gas-electricity/",
+            "url_resolves": true
+          },
+          {
+            "name": "PJM ELCC Class Ratings (Gas Combined Cycle 74-80%)",
+            "url": "https://www.pjm.com/-/media/DotCom/planning/res-adeq/elcc/2026-27-bra-elcc-class-ratings.pdf",
+            "url_resolves": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "dimension": "grid_flexibility",
+    "metric": "Flexibility composite (dimensionless, 0-1) built from three sub-metrics: (a) max sustained ramp rate in % of rated capacity per minute; (b) provides true synchronous (rotating-mass) inertia [1/0]; (c) black-start capable [1/0].",
+    "normalization": "Composite = 0.5*norm(ramp) + 0.25*inertia + 0.25*blackstart. norm(ramp) = min(ramp_%_per_min / 60, 1), i.e. a ramp of >=60 %/min maps to 1.0 and 0 %/min to 0.0 (linear in between). inertia and blackstart are 1 if the technology natively provides true synchronous inertia / black-start, else 0. Composite therefore ranges 0 (no ramp, no inertia, no black-start) to 1.0 (>=60 %/min ramp + synchronous inertia + black-start). Ramp values used: hydro 30, batteries effectively instantaneous (>=60 -> 1.0), geothermal 15, CCGT 10, nuclear 5.",
+    "scores": [
+      {
+        "technology": "Existing hydropower",
+        "metric_value": "~30 %/min ramp (range 10-30+ %/min; near-instant in seconds); synchronous inertia = 1; black-start = 1",
+        "score_0_1": 0.75,
+        "rationale": "Fast ramp (norm 0.50) plus the two booleans: hydro provides true rotating-mass inertia and is the premier black-start resource (DOE designates it a primary black-start technology).",
+        "sources": [
+          {
+            "name": "NREL Greening the Grid - hydro 10-30 %/min flexibility",
+            "url": "https://docs.nrel.gov/docs/fy20osti/77639.pdf",
+            "url_resolves": false
+          },
+          {
+            "name": "US DOE/ORNL - Hydropower Plants as Black Start Resources (2019)",
+            "url": "https://www.energy.gov/sites/prod/files/2019/05/f62/Hydro-Black-Start_May2019.pdf",
+            "url_resolves": true
+          }
+        ]
+      },
+      {
+        "technology": "Nuclear including SMR",
+        "metric_value": "~5 %/min ramp (EUR 3-5 %/min; EPR up to 5 %/min); synchronous inertia = 1; black-start = 0",
+        "score_0_1": 0.29,
+        "rationale": "Slow ramp (norm 0.083) and no black-start (needs offsite/external power to restart), but it does provide true synchronous inertia, lifting the composite to ~0.29.",
+        "sources": [
+          {
+            "name": "World Nuclear Association - Advanced Reactors (EPR 2.5-5 %/min load-following)",
+            "url": "https://world-nuclear.org/information-library/nuclear-power-reactors/other/advanced-nuclear-power-reactors",
+            "url_resolves": true
+          },
+          {
+            "name": "POWER Magazine - Flexible Operation of Nuclear Power Plants (up to 5 %RTP/min)",
+            "url": "https://www.powermag.com/flexible-operation-of-nuclear-power-plants-ramps-up/",
+            "url_resolves": true
+          }
+        ]
+      },
+      {
+        "technology": "Geothermal including enhanced (EGS)",
+        "metric_value": "~15 %/min ramp (flash ~2-5 %/min; binary/ORC up to 15-30 %/min in flexible mode); synchronous inertia = 1; black-start = 0",
+        "score_0_1": 0.38,
+        "rationale": "Moderate ramp for flexible binary/ORC (norm 0.25) plus synchronous inertia (1); not a standard black-start resource (0), giving ~0.38.",
+        "sources": [
+          {
+            "name": "Geothermal Rising - Firm and Flexible Power Services from Geothermal (ORC 15 %/min standard, 30 %/min flexible)",
+            "url": "https://geothermal.org/sites/default/files/2021-02/Firm_and_Flexible_Power_Services_from_Geothermal.pdf",
+            "url_resolves": true
+          },
+          {
+            "name": "Exergy - Geothermal ORC binary cycle flexibility",
+            "url": "https://exergyint.com/application/geothermal/",
+            "url_resolves": true
+          }
+        ]
+      },
+      {
+        "technology": "Solar plus wind with 4-hour battery",
+        "metric_value": "Ramp effectively instantaneous (battery full power in <1 s / ~250 ms -> norm capped at 1.0); synchronous inertia = 0; black-start = 1",
+        "score_0_1": 0.75,
+        "rationale": "Inverter response is essentially instantaneous (norm 1.0) and grid-forming BESS can black-start (1), but IBRs provide only synthetic, not true synchronous, inertia (0) -> 0.75.",
+        "sources": [
+          {
+            "name": "POWER Magazine - Benefits of Battery Storage-Based Black-Start Capability (full power <1 s)",
+            "url": "https://www.powermag.com/benefits-of-battery-storage-based-black-start-capability/",
+            "url_resolves": true
+          },
+          {
+            "name": "Medium/explainer - synthetic inertia: inverter-based PV/wind/batteries provide no real (synchronous) inertia",
+            "url": "https://larissa-fedunik.medium.com/what-is-synthetic-inertia-968c3e865b96",
+            "url_resolves": true
+          }
+        ]
+      },
+      {
+        "technology": "Solar plus wind with long-duration storage",
+        "metric_value": "Ramp effectively instantaneous (inverter/electrochemical full power in <1 s -> norm capped at 1.0); synchronous inertia = 0; black-start = 1",
+        "score_0_1": 0.75,
+        "rationale": "Same inverter-coupled flexibility as 4-h battery: instantaneous ramp (1.0) + grid-forming black-start (1), but only synthetic (not synchronous) inertia (0) -> 0.75; LDS adds duration, not faster ramp/inertia.",
+        "sources": [
+          {
+            "name": "POWER Magazine - Benefits of Battery Storage-Based Black-Start Capability",
+            "url": "https://www.powermag.com/benefits-of-battery-storage-based-black-start-capability/",
+            "url_resolves": true
+          },
+          {
+            "name": "enspired - non-frequency ancillary services: inverters provide inertia only if grid-forming; not native synchronous",
+            "url": "https://www.enspired-trading.com/blog/non-frequency-ancillary-services-inertia-reactive-power-black-start",
+            "url_resolves": true
+          }
+        ]
+      },
+      {
+        "technology": "Unabated gas CCGT",
+        "metric_value": "~10 %/min ramp (NREL 8-10 %/min for combined cycle); synchronous inertia = 1; black-start = 0",
+        "score_0_1": 0.33,
+        "rationale": "Modest ramp (norm 0.167) plus true synchronous inertia (1); standard CCGTs are not black-start capable without extra equipment (0) -> 0.33.",
+        "sources": [
+          {
+            "name": "NREL Greening the Grid - CCGT 8-10 %/min, OCGT up to 15 %/min",
+            "url": "https://docs.nrel.gov/docs/fy20osti/77639.pdf",
+            "url_resolves": false
+          },
+          {
+            "name": "Power Engineering - Gas Turbine Combined Cycle Fast Start (no black-start; ~30 min hot start)",
+            "url": "https://www.power-eng.com/gas/combined-cycle/gas-turbine-combined-cycle-fast-start-the-physics-behind-the-con/",
+            "url_resolves": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "dimension": "energy_security",
+    "metric": "Fuel cost as % of LCOE (%)",
+    "normalization": "Linear: score = 1 \u2212 (fuel_share_percent / 100). End-points: 0% fuel share -> 1.0 (fully fuel-secure); 100% fuel share -> 0.0. The highest observed share (gas CCGT, ~65%) therefore maps to ~0.35. Scores clipped to [0,1].",
+    "scores": [
+      {
+        "technology": "Existing hydropower",
+        "metric_value": "0% of LCOE (fuel cost = $0/MWh; water is free)",
+        "score_0_1": 1,
+        "rationale": "Fuel is free-flowing water \u2014 no continuously-supplied or imported fuel; Lazard's deconstruction assigns $0 fuel cost to all renewable resources, and hydro carries no fuel line item.",
+        "sources": [
+          {
+            "name": "Lazard LCOE+ v18.0 (June 2025), LCOE Components by Capital/Fixed O&M/Variable O&M/Fuel, pp.39-40",
+            "url": "https://www.lazard.com/media/uounhon4/lazards-lcoeplus-june-2025.pdf",
+            "url_resolves": true
+          },
+          {
+            "name": "EIA, Levelized Costs of New Generation Resources in the AEO2025 (Apr 2025) - hydroelectric LCOE has no fuel component",
+            "url": "https://www.eia.gov/outlooks/aeo/electricity_generation/pdf/AEO2025_LCOE_report.pdf",
+            "url_resolves": true
+          }
+        ]
+      },
+      {
+        "technology": "Nuclear including SMR",
+        "metric_value": "~15% of LCOE (range: WNA 15-20% for new build; Lazard $9/MWh fuel of $141-220 total = 4-6%)",
+        "score_0_1": 0.85,
+        "rationale": "Nuclear is capital-dominated; fuel (uranium, conversion, enrichment, fabrication) is a minor, low-volatility share \u2014 WNA reports 15-20% for new build, and LCOE is barely affected by a 50% fuel-price swing; SMRs inherit the same low fuel intensity.",
+        "sources": [
+          {
+            "name": "World Nuclear Association, Economics of Nuclear Power - fuel 15-20% of new-build LCOE, 30-40% for operating plants",
+            "url": "https://world-nuclear.org/information-library/economic-aspects/economics-of-nuclear-power",
+            "url_resolves": true
+          },
+          {
+            "name": "Lazard LCOE+ v18.0 (June 2025), p.39-40: U.S. Nuclear fuel cost = $9/MWh of $141-220 total LCOE",
+            "url": "https://www.lazard.com/media/uounhon4/lazards-lcoeplus-june-2025.pdf",
+            "url_resolves": true
+          }
+        ]
+      },
+      {
+        "technology": "Geothermal including enhanced (EGS)",
+        "metric_value": "0% of LCOE (fuel cost = $0/MWh; geothermal heat is the free resource)",
+        "score_0_1": 1,
+        "rationale": "Earth heat is the free fuel \u2014 Lazard's deconstruction shows geothermal with $0 fuel cost ($55-82 capital + $2 fixed O&M + $9-25 variable O&M, no fuel line); no imported fuel exposure.",
+        "sources": [
+          {
+            "name": "Lazard LCOE+ v18.0 (June 2025), p.39-40 and Key Assumptions p.35: geothermal Fuel Price = '-' (none)",
+            "url": "https://www.lazard.com/media/uounhon4/lazards-lcoeplus-june-2025.pdf",
+            "url_resolves": true
+          }
+        ]
+      },
+      {
+        "technology": "Solar plus wind with 4-hour battery",
+        "metric_value": "0% of LCOE (fuel cost = $0/MWh; sun and wind are free, $0/MWh charging cost)",
+        "score_0_1": 1,
+        "rationale": "Solar PV and wind have zero fuel cost in Lazard's deconstruction, and the 4-hour battery is charged at $0/MWh from the paired renewable \u2014 added cost is capital/O&M, not fuel; no fuel-supply exposure.",
+        "sources": [
+          {
+            "name": "Lazard LCOE+ v18.0 (June 2025), p.39-40 (solar/wind $0 fuel) and p.36 Hybrid Generation+Storage: Charging Cost = $0.00/MWh",
+            "url": "https://www.lazard.com/media/uounhon4/lazards-lcoeplus-june-2025.pdf",
+            "url_resolves": true
+          },
+          {
+            "name": "EIA AEO2025 LCOE report - solar PV and wind LCOE contain no fuel component",
+            "url": "https://www.eia.gov/outlooks/aeo/electricity_generation/pdf/AEO2025_LCOE_report.pdf",
+            "url_resolves": true
+          }
+        ]
+      },
+      {
+        "technology": "Solar plus wind with long-duration storage",
+        "metric_value": "0% of LCOE (fuel cost = $0/MWh; renewables free, storage charged from free renewable energy)",
+        "score_0_1": 1,
+        "rationale": "Same zero-fuel solar/wind generation as the 4-hour case; long-duration storage shifts energy in time but adds capital/O&M, not fuel \u2014 it carries the zero-fuel-cost advantage of wind and solar with no imported-fuel exposure.",
+        "sources": [
+          {
+            "name": "Lazard LCOE+ v18.0 (June 2025), p.39-40: solar PV and wind fuel cost = $0/MWh",
+            "url": "https://www.lazard.com/media/uounhon4/lazards-lcoeplus-june-2025.pdf",
+            "url_resolves": true
+          },
+          {
+            "name": "NREL, Exploring the Future Energy Value of Long-Duration Energy Storage (fy25osti/92836) - LDES manages the zero-fuel-cost advantage of wind and solar",
+            "url": "https://docs.nrel.gov/docs/fy25osti/92836.pdf",
+            "url_resolves": true
+          }
+        ]
+      },
+      {
+        "technology": "Unabated gas CCGT",
+        "metric_value": "~65% of LCOE (Lazard fuel $22/MWh of $48 at high utilization = 46% in today's low-gas environment; historically 60-80% of LCOE / ~80% of operating cost)",
+        "score_0_1": 0.35,
+        "rationale": "Fuel is the single largest CCGT cost and the most volatile: Lazard's deconstruction shows fuel as ~46% of the low-end (90% capacity factor) LCOE even at a low $3.45/MMBtu gas price, with the literature commonly placing the share at 60-80% in normal gas-price environments \u2014 highest fuel-supply/import exposure of the six.",
+        "sources": [
+          {
+            "name": "Lazard LCOE+ v18.0 (June 2025), p.39: Gas Combined Cycle fuel cost = $22/MWh of $48 LCOE (low end); p.40 $23 of $109 (high end)",
+            "url": "https://www.lazard.com/media/uounhon4/lazards-lcoeplus-june-2025.pdf",
+            "url_resolves": true
+          },
+          {
+            "name": "World Nuclear Association, Economics of Nuclear Power - notes gas/coal LCOE far more fuel-sensitive than nuclear (LCOE ~7% change per 10% fuel-price change)",
+            "url": "https://world-nuclear.org/information-library/economic-aspects/economics-of-nuclear-power",
+            "url_resolves": true
+          },
+          {
+            "name": "EIA AEO2025 LCOE report - combined-cycle 'levelized variable O&M' (incl. fuel) is the dominant operating-cost segment",
+            "url": "https://www.eia.gov/outlooks/aeo/electricity_generation/pdf/AEO2025_LCOE_report.pdf",
+            "url_resolves": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "dimension": "developing_world_suitability",
+    "metric": "Equal-weight composite (0-1) of three sub-metrics: (a) overnight capex intensity in USD/kW [lower is better]; (b) cost-of-capital LCOE sensitivity = % rise in LCOE when WACC goes from ~3-4% to ~10-12% [lower is better]; (c) share of the technology's global resource/fuel potential located in emerging & developing economies (EMDEs), in % [higher is better]. EMDE relevance: IEA Cost of Capital Observatory finds WACC is 2-3x higher in EMDEs than advanced economies (financing ~50% of solar LCOE in EMDEs vs 25-30% elsewhere), so capital-heavy + CoC-sensitive techs are doubly penalized where capital is dear.",
+    "normalization": "Each sub-metric mapped to 0-1, then averaged (1/3 each). (a) score_capex = clamp((10000 - capex_USD/kW)/(10000 - 800), 0, 1): 800 USD/kW->1.0, 10000 USD/kW->0.0. (b) score_coc = clamp((130 - sens_pct)/(130 - 5), 0, 1): +5% LCOE rise->1.0, +130% rise->0.0. (c) score_res = EMDE_share_pct/100: 0%->0.0, 100%->1.0. Composite = (score_capex + score_coc + score_res)/3. Reported metric_value is the composite; score_0_1 equals the composite.",
+    "scores": [
+      {
+        "technology": "Existing hydropower",
+        "metric_value": "composite 0.83 (capex ~500 USD/kW refurb of sunk fleet -> capex 1.00; CoC sensitivity ~20% -> 0.88; EMDE resource ~60% -> 0.60)",
+        "score_0_1": 0.83,
+        "rationale": "Existing fleet is already built so its capex is effectively sunk (only ~500/kW refurbishment), and most of the world's remaining hydro potential and capacity sits in EMDEs across Africa, Asia and Latin America.",
+        "sources": [
+          {
+            "name": "IEA - Hydroelectricity (untapped potential in developing economies)",
+            "url": "https://www.iea.org/energy-system/renewables/hydroelectricity",
+            "url_resolves": true
+          },
+          {
+            "name": "IRENA Renewable Power Generation Costs in 2024 (hydropower TIC 2,267 USD/kW, LCOE 0.057/kWh)",
+            "url": "https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2025/Jul/IRENA_TEC_RPGC_in_2024_Summary_2025.pdf",
+            "url_resolves": true
+          }
+        ]
+      },
+      {
+        "technology": "Nuclear incl SMR",
+        "metric_value": "composite 0.14 (capex 7,861 USD/kW -> 0.23; CoC sensitivity +125% LCOE 3%->10% -> 0.04; EMDE resource/deployment ~15% -> 0.15)",
+        "score_0_1": 0.14,
+        "rationale": "Highest capex (EIA $7,861/kW; FOAK ~$9,000/kW) and the single most cost-of-capital-sensitive technology (OECD-NEA: LCOE +125% from 3% to 10% discount rate), so EMDE-level WACC is crippling; supply chains and demonstrated build capability are concentrated in advanced economies.",
+        "sources": [
+          {
+            "name": "EIA Capital Cost Study (S&L 2023): advanced nuclear $7,861/kW, SMR $8,936/kW",
+            "url": "https://www.eia.gov/analysis/studies/powerplants/capitalcost/pdf/Capital_Cost_Study_Discussion_Slides.pdf",
+            "url_resolves": true
+          },
+          {
+            "name": "World Nuclear Association - Economics of Nuclear Power (LCOE +125% from 3%->10% discount rate; capital ~60% of LCOE)",
+            "url": "https://world-nuclear.org/information-library/economic-aspects/economics-of-nuclear-power",
+            "url_resolves": true
+          },
+          {
+            "name": "IEA Cost of Capital Observatory (WACC 2-3x higher in EMDEs)",
+            "url": "https://www.iea.org/news/iea-and-partners-launch-cost-of-capital-observatory-to-improve-transparency-over-higher-borrowing-costs-for-energy-projects-in-developing-world",
+            "url_resolves": true
+          }
+        ]
+      },
+      {
+        "technology": "Geothermal incl EGS",
+        "metric_value": "composite 0.56 (capex 4,015 USD/kW -> 0.65; CoC sensitivity ~70% -> 0.48; EMDE resource ~55% -> 0.55)",
+        "score_0_1": 0.56,
+        "rationale": "Conventional hydrothermal resource is genuinely EMDE-rich (Indonesia ~40% of global, plus Philippines, East African Rift, Latin America), but high drilling capex (IRENA $4,015/kW) makes it capital-intensive and exposed to EMDE financing costs; next-gen EGS shifts resource toward advanced economies.",
+        "sources": [
+          {
+            "name": "IRENA Renewable Power Generation Costs in 2024 (geothermal TIC 4,015 USD/kW)",
+            "url": "https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2025/Jul/IRENA_TEC_RPGC_in_2024_Summary_2025.pdf",
+            "url_resolves": true
+          },
+          {
+            "name": "Carnegie Endowment - Unlocking Global Geothermal Energy (Indonesia ~40% of global resource; Ring of Fire / East Africa)",
+            "url": "https://carnegieendowment.org/research/2025/07/unlocking-global-geothermal-energy-pathways-to-scaling-international-deployment-of-next-generation-geothermal",
+            "url_resolves": true
+          },
+          {
+            "name": "IRENA - East African Rift geothermal potential >20,000 MWe",
+            "url": "https://www.irena.org/News/articles/2020/Nov/The-East-African-Rift-Realising-the-Regions-Geothermal-Potential",
+            "url_resolves": true
+          }
+        ]
+      },
+      {
+        "technology": "Solar+wind +4h battery",
+        "metric_value": "composite 0.76 (blended firm capex ~2,400 USD/kW [solar 691 + wind 1,041 + 4h battery ~1,744] -> 0.83; CoC sensitivity ~35% -> 0.76; EMDE resource ~70% -> 0.70)",
+        "score_0_1": 0.76,
+        "rationale": "Modest, modular capex (IRENA: solar $691/kW, wind $1,041/kW; EIA 4h battery ~$436/kWh) and the best solar/wind technical potential is in EMDE deserts and rift zones (Africa, MENA, Latin America, India), though renewables carry ~2x the CoC sensitivity of gas, which bites at EMDE WACC.",
+        "sources": [
+          {
+            "name": "IRENA Renewable Power Generation Costs in 2024 (solar 691, onshore wind 1,041 USD/kW; battery 192 USD/kWh)",
+            "url": "https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2025/Jul/IRENA_TEC_RPGC_in_2024_Summary_2025.pdf",
+            "url_resolves": true
+          },
+          {
+            "name": "World Bank Global Photovoltaic Power Potential by Country (highest PV potential in sub-Saharan Africa & MENA)",
+            "url": "https://documents1.worldbank.org/curated/en/466331592817725242/pdf/Global-Photovoltaic-Power-Potential-by-Country.pdf",
+            "url_resolves": true
+          },
+          {
+            "name": "Financing costs and the competitiveness of renewable power (renewables ~2:1 CoC sensitivity vs CCGT)",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12677178/",
+            "url_resolves": true
+          }
+        ]
+      },
+      {
+        "technology": "Solar+wind +LDS",
+        "metric_value": "composite 0.70 (blended firm capex ~3,500 USD/kW with long-duration storage -> 0.71; CoC sensitivity ~45% -> 0.68; EMDE resource ~70% -> 0.70)",
+        "score_0_1": 0.7,
+        "rationale": "Same EMDE-rich solar/wind resource base, but adding long-duration storage raises upfront capital and therefore cost-of-capital exposure relative to the 4-hour-battery variant, lowering its EMDE suitability somewhat under 2-3x WACC.",
+        "sources": [
+          {
+            "name": "IRENA Renewable Power Generation Costs in 2024 (renewable TIC; storage capex)",
+            "url": "https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2025/Jul/IRENA_TEC_RPGC_in_2024_Summary_2025.pdf",
+            "url_resolves": true
+          },
+          {
+            "name": "EIA Capital Cost Study (4h battery $1,744/kW = $436/kWh; longer durations scale capex up)",
+            "url": "https://www.eia.gov/analysis/studies/powerplants/capitalcost/pdf/Capital_Cost_Study_Discussion_Slides.pdf",
+            "url_resolves": true
+          },
+          {
+            "name": "IEA Cost of Capital Observatory dashboard (EMDE battery WACC 9-16%)",
+            "url": "https://www.iea.org/reports/cost-of-capital-observatory/dashboard",
+            "url_resolves": true
+          }
+        ]
+      },
+      {
+        "technology": "Unabated gas CCGT",
+        "metric_value": "composite 0.92 (capex ~950 USD/kW -> 0.98; CoC sensitivity ~9% -> 0.97; EMDE gas reserves ~80% -> 0.80)",
+        "score_0_1": 0.92,
+        "rationale": "Lowest-capex firm option (EIA combined-cycle $868-921/kW) and least cost-of-capital-sensitive (fuel-dominated LCOE rises only ~9% at high WACC), and ~80% of global gas reserves sit in EMDEs/non-OECD - the best fit for high-WACC economies (climate caveat aside).",
+        "sources": [
+          {
+            "name": "EIA Capital Cost Study (S&L 2023): combined-cycle $868-921/kW",
+            "url": "https://www.eia.gov/analysis/studies/powerplants/capitalcost/pdf/Capital_Cost_Study_Discussion_Slides.pdf",
+            "url_resolves": true
+          },
+          {
+            "name": "Financing costs and the competitiveness of renewable power (CCGT only ~6-9% LCOE rise vs renewables 13-18%)",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12677178/",
+            "url_resolves": true
+          },
+          {
+            "name": "List of countries by natural gas proven reserves (~80% of reserves in non-OECD/EMDEs)",
+            "url": "https://en.wikipedia.org/wiki/List_of_countries_by_natural_gas_proven_reserves",
+            "url_resolves": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "dimension": "siting_flexibility",
+    "metric": "Land-use / footprint intensity = land area occupied per unit of annual electricity generation, in m^2 per MWh/yr (equivalently 100 x ha per TWh/yr, or m^2.yr/MWh). This is an explicit land-footprint PROXY for siting freedom: lower land per MWh = easier to site = higher score. A separate geographic resource-binding note is added per technology because a low footprint does not by itself confer siting freedom if the technology can only be built where a specific resource exists (hydro head/river, geothermal heat). Values use total-area (footprint + spacing) figures where available, anchored to the peer-reviewed LUIE dataset (Van Zalk & Behrens, PLOS One 2018, median ha/TWh/y x 0.01 = m^2/MWh) and cross-checked against NREL (Ong et al. 2013) and Our World in Data.",
+    "normalization": "Logarithmic (the metric spans >3 orders of magnitude, so a linear scale would collapse nuclear, gas, hydro and geothermal into ~0). score = (log10(L_max) - log10(L)) / (log10(L_max) - log10(L_min)), clipped to [0,1], where L = land-use intensity in m^2 per MWh/yr, L_min = 0.05 m^2/MWh (score = 1.0, best/lowest footprint) and L_max = 100 m^2/MWh (score = 0.0, worst/highest footprint). Denominator log10(100/0.05) = 3.301. Lower land footprint => higher score. NOTE: score reflects land footprint ONLY; geographic resource-binding is reported as a qualitative caveat in each rationale and does not alter the numeric score.",
+    "scores": [
+      {
+        "technology": "Existing hydropower",
+        "metric_value": "~6.5 m^2/MWh (650 ha/TWh/y, LUIE median for single-purpose reservoir dams; mean is far higher ~15,000 ha/TWh/y for flat-terrain reservoirs)",
+        "score_0_1": 0.36,
+        "rationale": "Powerhouse is tiny but reservoir flooding gives a moderate median footprint, and hydro is the MOST resource-bound of the six (needs specific river/head/topography), so practical siting freedom is low despite a middling land number.",
+        "sources": [
+          {
+            "name": "Van Zalk & Behrens, Land-use intensity of electricity (LUIE), PLOS One 2018 (PMC)",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9258890/",
+            "url_resolves": true
+          },
+          {
+            "name": "Our World in Data: Land use per energy source",
+            "url": "https://ourworldindata.org/land-use-per-energy-source",
+            "url_resolves": true
+          }
+        ]
+      },
+      {
+        "technology": "Nuclear including SMR",
+        "metric_value": "~0.071 m^2/MWh (7.1 ha/TWh/y, LUIE median; lowest of all electricity sources)",
+        "score_0_1": 0.95,
+        "rationale": "Lowest land footprint of any source (50x less than coal, 18-27x less than ground solar) and geographically near-unconstrained (needs only cooling water/grid access), making it the most siting-flexible on a land basis; SMRs further shrink per-site land.",
+        "sources": [
+          {
+            "name": "Van Zalk & Behrens, LUIE, PLOS One 2018 (PMC)",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9258890/",
+            "url_resolves": true
+          },
+          {
+            "name": "Our World in Data: Land use per energy source",
+            "url": "https://ourworldindata.org/land-use-per-energy-source",
+            "url_resolves": true
+          }
+        ]
+      },
+      {
+        "technology": "Geothermal including enhanced (EGS)",
+        "metric_value": "~0.45 m^2/MWh (45 ha/TWh/y, LUIE median; some studies report lower, ~0.05-0.4 m^2/MWh)",
+        "score_0_1": 0.71,
+        "rationale": "Very small powerhouse/wellfield footprint (second-lowest land number), but conventional geothermal is strongly resource-bound to hydrothermal zones; EGS widens the geography somewhat yet still favors high-heat-flow regions, so footprint is excellent while geographic freedom is moderate.",
+        "sources": [
+          {
+            "name": "Van Zalk & Behrens, LUIE, PLOS One 2018 (PMC)",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9258890/",
+            "url_resolves": true
+          },
+          {
+            "name": "Breakthrough Institute: Land-use intensity of energy sources",
+            "url": "https://thebreakthrough.org/blog/whats-the-land-use-intensity-of-different-energy-sources",
+            "url_resolves": true
+          }
+        ]
+      },
+      {
+        "technology": "Solar plus wind with 4-hour battery",
+        "metric_value": "~55 m^2/MWh (blended portfolio: ground solar PV ~20 m^2/MWh [2,000 ha/TWh/y] + onshore wind total/spacing ~120 m^2/MWh [12,000 ha/TWh/y]; 4h battery adds negligible land)",
+        "score_0_1": 0.08,
+        "rationale": "Generation footprint is dominated by sprawling wind spacing and ground-mounted solar (highest land per MWh of the six); battery itself is land-dense, so the portfolio is land-hungry though geographically widely available.",
+        "sources": [
+          {
+            "name": "Van Zalk & Behrens, LUIE, PLOS One 2018 (PMC)",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9258890/",
+            "url_resolves": true
+          },
+          {
+            "name": "NREL Ong et al. 2013, Land-Use Requirements for Solar Power Plants (OSTI)",
+            "url": "https://www.osti.gov/biblio/1086349",
+            "url_resolves": true
+          }
+        ]
+      },
+      {
+        "technology": "Solar plus wind with long-duration storage",
+        "metric_value": "~65 m^2/MWh (same solar/wind generation footprint as above but with higher renewable over-build to firm multi-day demand; LDES media e.g. pumped hydro/CAES add modest land per delivered MWh)",
+        "score_0_1": 0.06,
+        "rationale": "Highest land footprint of the six: long-duration firming requires extra renewable over-build (more wind/solar acreage) plus the LDES facility itself; geographically broad but the most land-intensive option.",
+        "sources": [
+          {
+            "name": "Van Zalk & Behrens, LUIE, PLOS One 2018 (PMC)",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9258890/",
+            "url_resolves": true
+          },
+          {
+            "name": "NREL Ong et al. 2013, Land-Use Requirements for Solar Power Plants (OSTI)",
+            "url": "https://www.osti.gov/biblio/1086349",
+            "url_resolves": true
+          }
+        ]
+      },
+      {
+        "technology": "Unabated gas CCGT",
+        "metric_value": "~6 m^2/MWh (LUIE median natural gas: 410 ha/TWh/y footprint [4.1 m^2/MWh] to 1,900 ha/TWh/y total incl. upstream/spacing [19 m^2/MWh]; representative total ~6 m^2/MWh)",
+        "score_0_1": 0.37,
+        "rationale": "Plant footprint itself is very small; the bulk of land is diffuse upstream gas extraction, and CCGTs can be sited almost anywhere with pipeline/grid access, so geographic freedom is high while the total-area land number is moderate.",
+        "sources": [
+          {
+            "name": "Van Zalk & Behrens, LUIE, PLOS One 2018 (PMC)",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9258890/",
+            "url_resolves": true
+          },
+          {
+            "name": "Breakthrough Institute: Land-use intensity of energy sources",
+            "url": "https://thebreakthrough.org/blog/whats-the-land-use-intensity-of-different-energy-sources",
+            "url_resolves": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "dimension": "ride_through",
+    "metric": "Maximum continuous firm-output autonomy without any external energy input, in hours (assessed on a log10 scale)",
+    "normalization": "Score = clamp( log10(hours) / log10(100000), 0, 1 ) = log10(hours) / 5. Fixed numeric end-points: 1 hour of autonomy -> 0.0; 100,000 hours (~11.4 years, the practical ceiling representing an effectively unlimited on-site resource) -> 1.0. Reference points on this scale: 4 h -> 0.12, 24 h -> 0.28, 50 h -> 0.34, 1,000 h -> 0.60, 13,000 h -> 0.82, 100,000 h -> 1.00.",
+    "scores": [
+      {
+        "technology": "Existing hydropower",
+        "metric_value": "~1,000+ h (weeks to months for the large-reservoir share; seasonal storage operating independent of inflow)",
+        "score_0_1": 0.6,
+        "rationale": "Large storage reservoirs can run firm independent of hydrological inflow for many weeks or months; using ~1,000 h (the large-reservoir multi-week/seasonal share) gives log10(1000)/5 = 0.60.",
+        "sources": [
+          {
+            "name": "IHA - Types of Hydropower (storage hydropower: independent of inflow for weeks or months)",
+            "url": "https://www.hydropower.org/iha/discover-types-of-hydropower",
+            "url_resolves": true
+          }
+        ]
+      },
+      {
+        "technology": "Nuclear including SMR",
+        "metric_value": "~13,000 h (18-24 month fuel core; continuous run between refueling outages)",
+        "score_0_1": 0.82,
+        "rationale": "Reactors operate 18-24 months between refuelings; an 18-month core is ~13,140 h of fully self-contained firm output, giving log10(13140)/5 = 0.82 (near the top of the scale).",
+        "sources": [
+          {
+            "name": "World Nuclear Association - Nuclear Power Reactors (refuelling at 12, 18 or 24 month intervals)",
+            "url": "https://world-nuclear.org/information-library/nuclear-fuel-cycle/nuclear-power-reactors/nuclear-power-reactors",
+            "url_resolves": true
+          }
+        ]
+      },
+      {
+        "technology": "Geothermal including enhanced (EGS)",
+        "metric_value": "effectively unlimited (resource is the fuel); capped at 100,000 h for scaling; ~90% capacity factor, baseload 24/7",
+        "score_0_1": 1,
+        "rationale": "Geothermal's energy source is the in-situ heat resource, so there is no on-site fuel inventory to deplete; DOE calls it always-on baseload (~90% CF), so it pins the upper end of the scale (capped at 100,000 h -> 1.00).",
+        "sources": [
+          {
+            "name": "DOE Geothermal Technologies Office (baseload, ~90% capacity factor, around-the-clock)",
+            "url": "https://www.energy.gov/eere/geothermal/geothermal-technologies-office",
+            "url_resolves": true
+          }
+        ]
+      },
+      {
+        "technology": "Solar plus wind with 4-hour battery",
+        "metric_value": "~4 h (lithium-ion utility-scale standard discharge duration)",
+        "score_0_1": 0.12,
+        "rationale": "The 4-hour Li-ion battery is the autonomy ceiling once VRE input stops; EIA notes utility batteries average ~3-4 h, so 4 h -> log10(4)/5 = 0.12.",
+        "sources": [
+          {
+            "name": "EIA Today in Energy - Duration of utility-scale batteries (~3.0 h avg, 4-8 h diurnal)",
+            "url": "https://www.eia.gov/todayinenergy/detail.php?id=51798",
+            "url_resolves": true
+          }
+        ]
+      },
+      {
+        "technology": "Solar plus wind with long-duration storage",
+        "metric_value": "~50 h (LDES band 10 to ~100 h; DOE >=10 h, ARPA-E DAYS 10-100 h)",
+        "score_0_1": 0.34,
+        "rationale": "DOE defines LDES as >=10 h and ARPA-E's DAYS program targets 10 to ~100 h at rated power; using ~50 h (mid-band) gives log10(50)/5 = 0.34.",
+        "sources": [
+          {
+            "name": "DOE OCED - Long-Duration Energy Storage (>=10 hours)",
+            "url": "https://www.energy.gov/oced/long-duration-energy-storage",
+            "url_resolves": true
+          },
+          {
+            "name": "ARPA-E DAYS Program Overview (10 to ~100 hours at rated power)",
+            "url": "https://arpa-e.energy.gov/sites/default/files/migrated/documents/files/DAYS_ProgramOverview_FINAL.pdf",
+            "url_resolves": true
+          }
+        ]
+      },
+      {
+        "technology": "Unabated gas CCGT",
+        "metric_value": "~24 h (pipeline-dependent; hours with no on-site storage, up to ~2-3 days on-site oil for dual-fuel units)",
+        "score_0_1": 0.28,
+        "rationale": "A pure pipeline-fed CCGT has essentially no on-site fuel (hours); dual-fuel units credited under ISO-NE's program hold ~2-3 days of on-site oil, so ~24 h is representative -> log10(24)/5 = 0.28.",
+        "sources": [
+          {
+            "name": "ISO New England - Inventoried Energy Program (on-site fuel ~2-3 days for cold-period reliability)",
+            "url": "https://www.iso-ne.com/markets-operations/markets/inventoried-energy-program",
+            "url_resolves": true
+          },
+          {
+            "name": "EIA Today in Energy - EIA now publishes oil stocks at power plant level (plants keep oil stocks on hand for peak dispatch)",
+            "url": "https://www.eia.gov/todayinenergy/detail.php?id=38072",
+            "url_resolves": true
+          }
+        ]
+      }
+    ]
+  }
+]

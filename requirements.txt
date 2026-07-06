@@ -1,0 +1,17 @@
+# Figure reproduction (clone -> bash 06_figures/reproduce_figures.sh)
+# Tested with Python 3.11.
+numpy
+pandas
+scipy
+matplotlib
+geopandas
+shapely
+pyogrio
+adjustText
+colorcet
+
+# --- Additional dependencies for the upstream pipeline (stages 01-05) ---
+# Streamflow ML (02): torch, optuna
+# REVUB ELCC MILP (04, optional): gurobipy   (commercial solver; license required)
+# SWAT+ setup (01) additionally requires QSWAT+/SWAT+ Editor and the SWAT+ executable.
+# These are NOT needed to reproduce the figures from the bundled data.

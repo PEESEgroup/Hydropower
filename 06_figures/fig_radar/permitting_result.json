@@ -1,0 +1,115 @@
+{
+  "dimension": "Permitting / approval lead time (regulatory clock to bring a firm-power option online to serve a data center, NOT physical construction)",
+  "metric": "Years of permitting, licensing and regulatory approval required before the option can begin serving the data center (permitting/approval clock only). Lower years = more deployable.",
+  "normalization": "score = clamp(1 - permitting_years / 8, 0, 1), evaluated at the midpoint of each option's typical permitting/approval clock in years; shorter permitting = higher score. The 8-year denominator anchors the worst realistic permitting horizon (geothermal up-to-10-yr / historical nuclear decade) toward 0; a zero-year (already-permitted) option approaches 1.",
+  "scores": [
+    {
+      "technology": "Existing hydropower",
+      "metric_value": "~0.5 years (already FERC-licensed; needs a PPA, not a new generation permit)",
+      "score_0_1": 0.94,
+      "rationale": "Plant already holds a FERC license, so firming a data center needs only a power-purchase agreement / minor amendment, not a new generation permit -- effectively no new approval clock.",
+      "sources": [
+        {
+          "name": "FERC -- Licensing (existing-project relicensing/amendments)",
+          "url": "https://www.ferc.gov/licensing",
+          "url_resolves": false
+        },
+        {
+          "name": "CRS R48762 -- Data Center Energy Infrastructure: Federal Permit Requirements (existing hydro PPAs, e.g. Brookfield-Google)",
+          "url": "https://www.congress.gov/crs-product/R48762",
+          "url_resolves": false
+        }
+      ]
+    },
+    {
+      "technology": "Unabated gas CCGT",
+      "metric_value": "~1-2 years (air/PSD + state siting permits)",
+      "score_0_1": 0.81,
+      "rationale": "New-build air permit plus state siting; streamlined CEC opt-in path is ~270-360 days, with simple permits ~6-12 months and complex EIS cases stretching toward ~2 years.",
+      "sources": [
+        {
+          "name": "California Energy Commission -- Power Plant Licensing (270-360 day opt-in window)",
+          "url": "https://www.energy.ca.gov/programs-and-topics/topics/power-plants/power-plant-licensing",
+          "url_resolves": true
+        },
+        {
+          "name": "US EPA -- Clean Air Act power plant permitting",
+          "url": "https://www.epa.gov/caa-permitting/operating-permit-timeline-texas",
+          "url_resolves": false
+        }
+      ]
+    },
+    {
+      "technology": "Solar plus wind with 4-hour battery",
+      "metric_value": "~3-4 years (siting permits + interconnection queue; ~5-yr median queue in 2023)",
+      "score_0_1": 0.56,
+      "rationale": "New-build siting is months-to-~1 yr, but the binding regulatory/approval bottleneck is the interconnection queue: LBNL reports a ~5-year median request-to-operation in 2023 (up from <2 yr in 2008).",
+      "sources": [
+        {
+          "name": "LBNL 'Queued Up' (2024 ed.) -- ~5-yr median queue duration, 2023",
+          "url": "https://emp.lbl.gov/publications/queued-2024-edition-characteristics",
+          "url_resolves": false
+        },
+        {
+          "name": "Utility Dive -- LBNL queue data (2 yr in 2008 -> 5 yr in 2023)",
+          "url": "https://www.utilitydive.com/news/grid-interconnection-queue-berkeley-lab-lbnl/712926/",
+          "url_resolves": true
+        }
+      ]
+    },
+    {
+      "technology": "Solar plus wind with long-duration storage",
+      "metric_value": "~3-4.5 years (same host siting + queue, plus newer LDES/BESS siting friction)",
+      "score_0_1": 0.5,
+      "rationale": "Inherits the same interconnection-queue bottleneck as its solar+wind host, plus added storage-siting friction (local BESS ordinances/moratoria, EU proposals for 12-24 mo limits), nudging it slightly above the 4-hr case in permitting time.",
+      "sources": [
+        {
+          "name": "LBNL 'Queued Up' (2024 ed.) -- ~5-yr median queue duration",
+          "url": "https://emp.lbl.gov/publications/queued-2024-edition-characteristics",
+          "url_resolves": false
+        },
+        {
+          "name": "Utility Dive -- LBNL interconnection queue wait times",
+          "url": "https://www.utilitydive.com/news/grid-interconnection-queue-berkeley-lab-lbnl/712926/",
+          "url_resolves": true
+        }
+      ]
+    },
+    {
+      "technology": "Nuclear including SMR",
+      "metric_value": "~3-5+ years (NRC combined license; ADVANCE Act targets ~25 mo post-docketing, plus pre-application; historically ~a decade)",
+      "score_0_1": 0.44,
+      "rationale": "NRC combined-license/design review: ADVANCE Act mandates safety+environmental review in 18 mo and a final decision within 25 mo of docketing, but pre-application and design certification push the realistic approval clock to ~3-5+ yr (historically >10 yr).",
+      "sources": [
+        {
+          "name": "NRC -- ADVANCE Act Licensing Efficiencies (18-mo review, 25-mo final decision)",
+          "url": "https://www.nrc.gov/about-nrc/governing-laws/advance-act/licensing-efficiencies",
+          "url_resolves": false
+        },
+        {
+          "name": "NRC -- Combined License Applications for New Reactors",
+          "url": "https://www.nrc.gov/reactors/new-reactors/large-lwr/col",
+          "url_resolves": false
+        }
+      ]
+    },
+    {
+      "technology": "Geothermal including enhanced (EGS)",
+      "metric_value": "~5-7 years permitting (up to 6 separate NEPA reviews; 7-10 yr total development)",
+      "score_0_1": 0.25,
+      "rationale": "Longest regulatory clock: DOE notes a single site can trigger NEPA up to six separate times (planning, leasing, exploration, drilling, utilization); GeoVision finds permitting adds 5-7 yr and total development reaches 7-10 yr.",
+      "sources": [
+        {
+          "name": "DOE -- Permitting for Geothermal Power Development Projects (NEPA up to six times)",
+          "url": "https://www.energy.gov/hgeo/geothermal/permitting-geothermal-power-development-projects",
+          "url_resolves": true
+        },
+        {
+          "name": "DOE OSTI -- Geothermal Permitting and NEPA Timeline Analysis",
+          "url": "https://www.osti.gov/dataexplorer/biblio/dataset/1678730",
+          "url_resolves": true
+        }
+      ]
+    }
+  ]
+}

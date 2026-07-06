@@ -1,0 +1,125 @@
+{
+  "dimension": "developing-world suitability (EMDE feasibility and benefit)",
+  "metric": "Equal-weight composite (mean of four 0-1 sub-metrics) of how feasible AND beneficial each firm-power option is for emerging/developing economies (EMDEs). Sub-metrics: (a) capex affordability [lower USD/kW better]; (b) cost-of-capital resilience [capital-light tech better, since EMDE WACC is ~2-3x advanced economies]; (c) EMDE resource availability [% of the technology's resource/potential located in developing economies]; (d) fuel-import / FX burden and domestic security [fuel-free domestic = 1.0; imported-fuel options penalized so cheap capex alone cannot make them 'highly suitable'].",
+  "normalization": "composite = mean(a,b,c,d), each in [0,1].\n(a) capex affordability: a = (capex_max - capex_i)/(capex_max - capex_min), using representative system capex USD/kW {existing hydro 500 (sunk/refurb), gas CCGT 1100, solar+wind+4h battery 1700, solar+wind+LDES 2600, geothermal/EGS 4500, nuclear/SMR 7500}; max=7500, min=500.\n(b) cost-of-capital resilience: b = 1 - capital_intensity_i, where capital_intensity is the share of lifetime cost that is upfront capital (capital-heavy = WACC-fragile under high EMDE WACC). Values {existing hydro 0.30 (capex sunk), gas 0.30, solar+wind+4h 0.75, solar+wind+LDES 0.85, geothermal 0.80, nuclear 0.85}.\n(c) EMDE resource availability: c = fraction of the technology's global resource/potential located in developing economies (0-1).\n(d) fuel-import/FX burden: d in [0,1]; fuel-free domestic resources = 1.0; nuclear = 0.60 (fuel imported but small, stockpilable); unabated gas = 0.15 (imported LNG drains FX, exposes to price spikes/supply cut-offs, stranded-asset risk). Weighting via equal averaging guarantees an imported-fuel option (low d) cannot reach 'highly suitable' on capex (a) and WACC (b) strength alone.\nHigher composite = more suitable for the developing world.",
+  "scores": [
+    {
+      "technology": "Existing hydropower",
+      "metric_value": "a=1.00 (capex ~500 USD/kW, sunk/refurb), b=0.70 (existing asset, low capital exposure), c=0.85 (~60% of untapped global hydro potential in EMDEs; Africa only ~11% of 600 GW harnessed), d=1.00 (fuel-free, domestic) -> composite 0.89",
+      "score_0_1": 0.89,
+      "rationale": "Highest EMDE suitability: largely sunk capex, fuel-free domestic, and the bulk of remaining global hydro potential sits in developing economies.",
+      "sources": [
+        {
+          "name": "IEA Hydropower Special Market Report - Executive summary (~60% untapped potential in EMDEs)",
+          "url": "https://www.iea.org/reports/hydropower-special-market-report/executive-summary",
+          "url_resolves": true
+        },
+        {
+          "name": "GNESTE techno-economic database (median capex by technology)",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11372380/",
+          "url_resolves": true
+        }
+      ]
+    },
+    {
+      "technology": "Nuclear including SMR",
+      "metric_value": "a=0.00 (capex ~7500 USD/kW, the dearest), b=0.15 (extremely capital-heavy, long build, WACC-fragile), c=0.30 (uranium/fuel-cycle and reactor capability concentrated in advanced economies; few EMDE programs), d=0.60 (fuel imported but small and stockpilable) -> composite 0.26",
+      "score_0_1": 0.26,
+      "rationale": "Lowest EMDE suitability: highest capex and most WACC-fragile under EMDE financing costs, with thin EMDE resource/industrial base despite stockpilable fuel.",
+      "sources": [
+        {
+          "name": "IEA Cost of Capital Observatory (EMDE WACC vs advanced economies)",
+          "url": "https://www.iea.org/reports/cost-of-capital-observatory",
+          "url_resolves": true
+        },
+        {
+          "name": "IEA Financing Clean Energy Transitions in EMDEs - Executive summary (financing costs 2x+; capital costs dominate EMDE LCOE)",
+          "url": "https://www.iea.org/reports/financing-clean-energy-transitions-in-emerging-and-developing-economies/executive-summary",
+          "url_resolves": true
+        },
+        {
+          "name": "GNESTE techno-economic database (nuclear median capex ~7350 USD/kW)",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11372380/",
+          "url_resolves": true
+        }
+      ]
+    },
+    {
+      "technology": "Geothermal including enhanced (EGS)",
+      "metric_value": "a=0.43 (capex ~4500 USD/kW), b=0.20 (high upfront drilling cost, WACC-exposed), c=0.80 (resource overwhelmingly in EMDEs: Ring of Fire - Indonesia ~29 GW, Philippines - and East African Rift - Kenya, Ethiopia - plus Latin America), d=1.00 (fuel-free, domestic) -> composite 0.61",
+      "score_0_1": 0.61,
+      "rationale": "Fuel-free and resource is concentrated in EMDEs, but high upfront drilling capex and WACC exposure limit financeability.",
+      "sources": [
+        {
+          "name": "FAO - For developing countries, new opportunities in geothermal energy (Ring of Fire + Rift Valley concentration)",
+          "url": "https://www.fao.org/newsroom/detail/For-developing-countries-new-opportunities-in-geothermal-energy/en",
+          "url_resolves": true
+        },
+        {
+          "name": "Carnegie Endowment - Unlocking Global Geothermal Energy (Asia >40% of installed capacity; EMDE pipeline)",
+          "url": "https://carnegieendowment.org/research/2025/07/unlocking-global-geothermal-energy-pathways-to-scaling-international-deployment-of-next-generation-geothermal",
+          "url_resolves": true
+        }
+      ]
+    },
+    {
+      "technology": "Solar plus wind with 4-hour battery",
+      "metric_value": "a=0.83 (blended capex ~1700 USD/kW), b=0.25 (capital-heavy, WACC-exposed but RE WACC now often at/below gas in EMDEs), c=0.90 (solar/wind technical potential overwhelmingly in EMDE sunbelt; Africa alone ~7900 GW solar), d=1.00 (fuel-free, domestic) -> composite 0.75",
+      "score_0_1": 0.75,
+      "rationale": "Abundant fuel-free EMDE resource with falling capex; IEA finds solar WACC at or below gas in ~two-thirds of EMDE cases, offsetting capital intensity.",
+      "sources": [
+        {
+          "name": "IEA - Cost of capital survey: solar PV can be less risky than gas power in EMDEs (~2/3 of cases WACC same or lower)",
+          "url": "https://www.iea.org/commentaries/cost-of-capital-survey-shows-investments-in-solar-pv-can-be-less-risky-than-gas-power-in-emerging-and-developing-economies-though-values-remain-high",
+          "url_resolves": true
+        },
+        {
+          "name": "IRENA - The cost of financing for renewable power (WACC 3.8% Europe vs ~12% Africa; LCOE +34% solar / +29% wind from 5%->9% WACC)",
+          "url": "https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2023/May/IRENA_The_cost_of_financing_renewable_power_2023.pdf",
+          "url_resolves": true
+        }
+      ]
+    },
+    {
+      "technology": "Solar plus wind with long-duration storage",
+      "metric_value": "a=0.70 (blended capex ~2600 USD/kW with LDES overbuild), b=0.15 (most capital-heavy of the RE bundles), c=0.90 (same abundant EMDE solar/wind resource), d=1.00 (fuel-free, domestic) -> composite 0.69",
+      "score_0_1": 0.69,
+      "rationale": "Same abundant fuel-free EMDE resource as the 4h case, but the LDES overbuild premium raises capex and WACC exposure, lowering financeability.",
+      "sources": [
+        {
+          "name": "IRENA - The cost of financing for renewable power (high EMDE WACC penalizes capital-heavy bundles)",
+          "url": "https://www.irena.org/-/media/Files/IRENA/Agency/Publication/2023/May/IRENA_The_cost_of_financing_renewable_power_2023.pdf",
+          "url_resolves": true
+        },
+        {
+          "name": "IEA Financing Clean Energy Transitions in EMDEs - Executive summary (financing costs dominate EMDE LCOE for capital-heavy tech)",
+          "url": "https://www.iea.org/reports/financing-clean-energy-transitions-in-emerging-and-developing-economies/executive-summary",
+          "url_resolves": true
+        }
+      ]
+    },
+    {
+      "technology": "Unabated gas CCGT",
+      "metric_value": "a=0.91 (capex ~1100 USD/kW, cheapest to build), b=0.70 (capex-light, fuel-heavy, so least WACC-exposed on capital), c=0.40 (domestic gas only in some EMDEs; most must import LNG), d=0.15 (imported LNG drains scarce FX, exposes to price spikes and supply cut-offs, stranded-asset risk) -> composite 0.54",
+      "score_0_1": 0.54,
+      "rationale": "Cheap capex and WACC-resilient, but the imported-fuel/FX burden (d=0.15) drags it to 5th of 6; gas is NOT top because EMDEs need ~USD 3-5/MBtu while supply needs ~USD 8/MBtu, draining hard currency and risking stranded assets.",
+      "sources": [
+        {
+          "name": "IEA World Energy Outlook 2024 - Executive summary (gas-importing EMDEs need ~USD 3-5/MBtu vs ~USD 8 supply cost; price-sensitive importers; rising import dependence to ~60% gas by 2050)",
+          "url": "https://www.iea.org/reports/world-energy-outlook-2024/executive-summary",
+          "url_resolves": true
+        },
+        {
+          "name": "IEEFA - Emerging Asia's unrealistic LNG-to-power pipeline threatens macroeconomic and financial stability (FX/price exposure, stranded-asset risk; blocks automated fetch)",
+          "url": "https://ieefa.org/articles/ieefa-emerging-asias-unrealistic-lng-power-project-pipeline-threatens-macroeconomic-and",
+          "url_resolves": false
+        },
+        {
+          "name": "GNESTE techno-economic database (CCGT median capex ~1040 USD/kW)",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11372380/",
+          "url_resolves": true
+        }
+      ]
+    }
+  ]
+}
