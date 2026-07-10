@@ -78,10 +78,10 @@ def lane(ax, d, color):
         y = NR - 1 - i
         sub = aff[aff.bloc == b]; bv = sub['typ'].to_numpy()
         if len(bv):
-            med = np.median(bv)
+            med = np.mean(bv)                                                # MEAN over affected dams (basin-scale footprint statistic, matches SI)
             ax.scatter(bv, y + rng.uniform(-0.28, 0.28, len(bv)), s=2.0, color=S.BLOC_COLOR[b], alpha=0.5, lw=0, zorder=3)
             ax.plot([med] * 2, [y - 0.34, y + 0.34], color=S.BLOC_COLOR[b], lw=1.3, zorder=4)
-            mc = np.median(sub['conv'].to_numpy())                          # median total change (DC vs conventional)
+            mc = np.mean(sub['conv'].to_numpy())                            # mean total change (DC vs conventional)
             ratio = (med / abs(mc) * 100.0) if abs(mc) > 1e-9 else None      # incremental DC fraction; |denom| so sign matches the absolute
             ax.text(1.04, y + 0.20, absfmt(med), transform=ax.get_yaxis_transform(), ha='left', va='center', fontsize=FS, color=S.BLOC_COLOR[b])
             ax.text(1.04, y - 0.24, ratiofmt(ratio), transform=ax.get_yaxis_transform(), ha='left', va='center', fontsize=FS - 1.5, color=S.BLOC_COLOR[b])

@@ -28,6 +28,12 @@ _trapz = getattr(np, 'trapezoid', None) or np.trapz
 
 TOPIC = 'ecology'
 DT_H = 1.0                       # hourly
+# Amplitude deadband for the flow-reversal counts (hourly ramping() and daily IHA):
+# only ramps larger than REV_DEADBAND_FRAC * mean operated flow count as a direction
+# change, so hydraulically-trivial sub-threshold jitter is not counted as hydropeaking.
+# 0.05 (5% of mean flow) is the default; set REVUB_REV_DEADBAND=0.0 to reproduce the
+# pre-deadband metric exactly.
+REV_DEADBAND_FRAC = float(os.environ.get('REVUB_REV_DEADBAND', '0.05'))
 SEASONS = ['spring', 'summer', 'autumn', 'winter']
 DEPTH_A, DEPTH_F = 0.27, 0.30    # d = a·Q^f  (Andreadis et al. 2013 bankfull depth; hc=0.27,hp=0.30 per HydroMT)
 WIDTH_A, WIDTH_F = 7.2, 0.50     # w = a·Q^f  (downstream hydraulic geometry)
@@ -80,6 +86,10 @@ def ecodeficit(nat_vals, reg_vals, mean_nat=None):
 # ---------------------------------------------------------------------------
 def ramping(arr, hpp, hrs):
     down, up, hp1_days, reversals_yr = [], [], [], []
+    # reversal amplitude deadband = fraction of this station's mean operated flow
+    _vbar = np.concatenate([C.valid_series(arr, y, hpp, hrs) for y in range(arr.shape[1])])
+    _vbar = _vbar[np.isfinite(_vbar)]
+    _rev_thr = REV_DEADBAND_FRAC * _vbar.mean() if _vbar.size else 0.0
     for y in range(arr.shape[1]):
         q = C.valid_series(arr, y, hpp, hrs)         # KEEP NaN - do not pre-filter (issue #8b)
         if np.sum(np.isfinite(q)) < 48:
@@ -88,7 +98,10 @@ def ramping(arr, hpp, hrs):
         dq = dq[np.isfinite(dq)]                      # then drop diffs spanning a NaN gap
         down.append(-dq[dq < 0])                 # down-ramp magnitudes (>0)
         up.append(dq[dq > 0])
-        sign = np.sign(dq); sign = sign[sign != 0]
+        # count direction changes only between ramps above the amplitude deadband
+        # (sub-threshold jitter is not ecologically-meaningful hydropeaking)
+        dq_rev = dq[np.abs(dq) > _rev_thr]
+        sign = np.sign(dq_rev); sign = sign[sign != 0]
         reversals_yr.append(int(np.sum(np.diff(sign) != 0)))
         nd = q.size // 24
         if nd:
@@ -266,7 +279,10 @@ def _iha_year(d, lo, hi):
     dd = np.diff(d)
     p['rise_rate'] = float(dd[dd > 0].mean()) if np.any(dd > 0) else 0.0
     p['fall_rate'] = float(dd[dd < 0].mean()) if np.any(dd < 0) else 0.0
-    sg = np.sign(dd); sg = sg[sg != 0]
+    # same amplitude deadband as ramping(): ignore sub-threshold daily jitter
+    _dthr = REV_DEADBAND_FRAC * am if am > 0 else 0.0
+    dd_rev = dd[np.abs(dd) > _dthr]
+    sg = np.sign(dd_rev); sg = sg[sg != 0]
     p['reversals'] = float(np.sum(np.diff(sg) != 0))
     return p
 
