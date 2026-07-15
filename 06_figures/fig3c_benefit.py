@@ -34,7 +34,7 @@ def main():
     d = pd.read_csv(os.path.join(DATA, 'dc_supply_D.csv'))
     d = d[d.dc_mean_mw > 0].copy()
     d['PS'] = 100 * (d.supply_B_mw - d.supply_A_mw) / d.dc_mean_mw       # PS vs independent (B - A)
-    d['Cascade'] = 100 * (d.supply_C_mw - d.supply_A_mw) / d.dc_mean_mw  # cascade vs independent (C - A)
+    d['Cascade'] = 100 * (d.supply_C_mw - d.supply_B_mw) / d.dc_mean_mw  # cascade gain over pumped storage (C - B)
     ps = d.groupby('region').agg(val=('PS', 'mean'), dem=('dc_mean_mw', 'mean'))
     ca = d.groupby('region').agg(val=('Cascade', 'mean'), dem=('dc_mean_mw', 'mean'))
     # interconnection per region (mean over 15 scenarios)

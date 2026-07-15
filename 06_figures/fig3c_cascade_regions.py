@@ -1,7 +1,7 @@
 """Fig 3c (cascade panel) - cascade-coordination firm gain per region (Fig3b idiom).
 
 One row per region where within-basin cascade coordination adds firm capacity for the data centre
-(program-D supply_C - supply_A, vs the independent baseline, as % of DC demand, median>10%); dot = median across
+(program-D supply_C - supply_B, cascade gain over the pumped-storage baseline, as % of DC demand, median>10%); dot = median across
 the 5 GCM x 3 SSP grid, whisker = min-max across those 15 scenarios, marker area ~ DC demand.
 Grouped by bloc, names on the left, bloc on the right. Unlike pumped storage, cascade is a large,
 broad lever and China is a major beneficiary (China Southwest +62% of demand). Arial 7 pt; no title.
@@ -31,7 +31,7 @@ def main():
     d = pd.read_csv(os.path.join(DATA, 'dc_supply_D.csv'))
     d['bloc'] = d.region.map(r2b)
     d = d[d.dc_mean_mw > 0].copy()
-    d['ca'] = 100 * (d.supply_C_mw - d.supply_A_mw) / d.dc_mean_mw   # cascade vs independent baseline (C - A)
+    d['ca'] = 100 * (d.supply_C_mw - d.supply_B_mw) / d.dc_mean_mw   # cascade gain over pumped storage (C - B)
     g = d.groupby('region').agg(bloc=('bloc', 'first'), med=('ca', 'median'),
                                 lo=('ca', 'min'), hi=('ca', 'max'), dem=('dc_mean_mw', 'median'))
     g = g[g.med > THRESH]
