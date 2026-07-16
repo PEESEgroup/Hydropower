@@ -60,10 +60,8 @@ Typical installation time: under 5 minutes.
 
 ## 3. Demo
 
-Pre-rendered figure panels are included under `figures/` so the published
-results can be inspected immediately without running anything.
-
-To regenerate them from the bundled data:
+The figure panels are not committed to the repository; a single script builds
+them from the bundled data into `figures/`:
 
 ```bash
 bash 06_figures/reproduce_figures.sh           # uses `python` on PATH
@@ -72,8 +70,9 @@ bash 06_figures/reproduce_figures.sh           # uses `python` on PATH
 This regenerates the **29 paper-panel PNGs** (the 25 data panels of Fig. 1-6;
 Fig. 3a is shown as 5 per-continent facets) into `figures/` in about 2-4 minutes
 on a laptop; intermediate/alternate panels are pruned automatically. Expected
-output: `== DONE: 29 paper-panel PNGs ... (failures: 0) ==`. Fig. 5a and 5c ship
-pre-rendered (they need HydroBASINS to regenerate); Fig. 4e/4f are omitted (IUCN).
+output: `== DONE: ... paper-panel PNGs ... (failures: 0) ==`. Fig. 5a and 5c
+additionally need HydroBASINS, and Fig. 4e/4f need the IUCN Red List; those four
+panels are external-data-dependent and are not produced by the default run (see below).
 
 ## 4. Instructions for Use
 
@@ -101,8 +100,8 @@ stage 06 as in the Demo.
   (`fig5_*.py`) are included; with an IUCN download under
   `06_figures/data_external/iucn/` they can be regenerated.
 - **Fig. 5a, 5c** (basin-fill maps of the irrigation gap and sediment index) need
-  **HydroBASINS** polygons (free, hydrosheds.org). They **ship pre-rendered**;
-  regenerate with `fig4_maps_basin.py` after placing HydroBASINS under
+  **HydroBASINS** polygons (free, hydrosheds.org). They are **not included**;
+  build with `fig4_maps_basin.py` after placing HydroBASINS under
   `06_figures/data_external/`.
 
 ## Directory Structure
@@ -124,7 +123,7 @@ stage 06 as in the Demo.
 │   ├── reproduce_figures.sh
 │   └── gis/                # Natural Earth + GADM basemaps (public domain)
 ├── data/                   # bundled figure-input data (see below)
-└── figures/                # 29 pre-rendered paper-panel PNGs
+└── figures/                # created by reproduce_figures.sh (not committed)
 ```
 
 ## Data Sources
