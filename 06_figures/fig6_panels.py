@@ -35,6 +35,11 @@ def prep():
     d = em.merge(rg, on='region', how='left').merge(cl, on='region', how='left')
     d['carbon_Mt'] = d.net_carbon_avoided / 1e6
     d['dom_share'] = 100 * np.minimum(d.supply_C_mw, d.dc_mean_mw) / d.dc_mean_mw
+    # True operating-margin grid emission factor (gCO2eq/kWh), backed out from the carbon identity:
+    # net_avoided = E_hyd*(EF_grid - EF_hyd) and dc_carbon_intensity = (hydro + grid-shortfall) blend,
+    # which algebraically give EF_grid = dc_carbon_intensity + net_carbon_avoided*1000/(dc_mean_mw*8760).
+    # Validated: reproduces the China MEE OM range (596-1047) and the US eGRID non-baseload factors exactly.
+    d['ef_grid'] = d.dc_carbon_intensity + d.net_carbon_avoided * 1000.0 / (d.dc_mean_mw * 8760.0)
     return d
 
 
@@ -125,7 +130,7 @@ def panelB(d):
         ax.text(1.02, y, '%.0f Mt\n%.0f%%' % (left, 100 * left / glob), transform=ax.get_yaxis_transform(), ha='left', va='center', fontsize=FS - 1, fontweight='bold', color='0.3', linespacing=0.95)
         ax.text(-0.02, y, LAB[g], transform=ax.get_yaxis_transform(), ha='right', va='center', fontsize=FS, color='0.2')
     ax.set_xlim(0, 172); ax.set_ylim(-0.6, len(ORDER) - 0.4); ax.set_yticks([])
-    ax.set_xlabel('net carbon avoided (Mt CO2/yr)', fontsize=FS - 1)
+    ax.set_xlabel('net carbon avoided (Mt CO$_2$eq/yr)', fontsize=FS - 1)
     ax.tick_params(axis='x', labelsize=FS - 1.5, width=0.4, length=2)
     for sp in ['top', 'right', 'left']:
         ax.spines[sp].set_visible(False)
@@ -133,7 +138,7 @@ def panelB(d):
     cax = fig.add_axes([0.21, 0.93, 0.42, 0.032])
     cb = fig.colorbar(ScalarMappable(norm=norm, cmap=cmap), cax=cax, orientation='horizontal')
     cb.ax.xaxis.set_label_position('top'); cb.ax.xaxis.set_ticks_position('bottom')
-    cb.set_label('DC carbon intensity (gCO2/kWh)', fontsize=FS - 2.2, labelpad=2)
+    cb.set_label('DC carbon intensity (g CO$_2$eq/kWh)', fontsize=FS - 2.2, labelpad=2)
     cb.ax.tick_params(labelsize=FS - 2.5, width=0.3, length=1.5); cb.outline.set_linewidth(0.3)
     finish(fig, 'b')
 
@@ -167,29 +172,29 @@ def panelC(d):
 
 
 # ----------------------------------------------------------------------------- D: siting paradox
-LBL_D = {'india_south': 'India South\n(best opportunity)', 'china_ec': 'China East\n(short, dirty)',
-         'usa_northerngrid_west': 'Pacific Northwest (US)\n(surplus, clean)'}
+LBL_D = {'india_south': 'India South\n(top developing site)', 'china_ec': 'China East\n(short, dirty)',
+         'sweden': 'Sweden\n(surplus, clean grid)'}
 
 
 def panelD(d):
     fig, ax = S.fig_mm(70, 74.25); fig.subplots_adjust(left=0.15, right=0.82, top=0.95, bottom=0.16)
-    s = d.dropna(subset=['balance_ratio', 'dc_carbon_intensity', 'net_carbon_avoided']).copy()
-    s = s[(s.dc_carbon_intensity > 0) & (s.balance_ratio > 0)]
+    s = d.dropna(subset=['balance_ratio', 'ef_grid', 'net_carbon_avoided']).copy()
+    s = s[(s.ef_grid > 0) & (s.balance_ratio > 0)]
     sz = 8 + 130 * np.sqrt(s.net_carbon_avoided.clip(lower=0) / s.net_carbon_avoided.clip(lower=0).max())
     ax.axvspan(1, 6, color=GREEN, alpha=0.05, zorder=0); ax.axhline(100, color='0.7', lw=0.5, ls=':', zorder=1); ax.axvline(1, color='0.7', lw=0.5, ls=':', zorder=1)
     for g in ORDER:
         m = s.income_group == g
-        ax.scatter(s.balance_ratio[m], s.dc_carbon_intensity[m], s=sz[m], color=COL[g], alpha=0.62, lw=0.3, ec='white', zorder=3, label=LAB[g])
+        ax.scatter(s.balance_ratio[m], s.ef_grid[m], s=sz[m], color=COL[g], alpha=0.62, lw=0.3, ec='white', zorder=3, label=LAB[g])
     for r, t in LBL_D.items():
         row = s[s.region == r]
         if len(row):
-            ax.annotate(t, (row.balance_ratio.values[0], row.dc_carbon_intensity.values[0]), fontsize=FS - 2.3, color='0.3', ha='center',
+            ax.annotate(t, (row.balance_ratio.values[0], row.ef_grid.values[0]), fontsize=FS - 2.3, color='0.3', ha='center',
                         xytext=(0, 16 if r != 'china_ec' else -20), textcoords='offset points', arrowprops=dict(arrowstyle='-', color='0.6', lw=0.4))
-    ax.set_xscale('log'); ax.set_yscale('log'); ax.set_xlim(0.18, 6); ax.set_ylim(3, 1600)
-    ax.set_xticks([0.2, 0.5, 1, 2, 5]); ax.set_yticks([10, 100, 1000])
+    ax.set_xscale('log'); ax.set_yscale('log'); ax.set_xlim(0.18, 6); ax.set_ylim(40, 2500)
+    ax.set_xticks([0.2, 0.5, 1, 2, 5]); ax.set_yticks([50, 100, 500, 1000])
     ax.xaxis.set_major_formatter(mticker.FuncFormatter(lambda v, p: '%g' % v)); ax.yaxis.set_major_formatter(mticker.FuncFormatter(lambda v, p: '%g' % v))
     ax.tick_params(labelsize=FS - 1.5, width=0.4, length=2)
-    ax.set_xlabel('hydro surplus → (firm/demand)', fontsize=FS - 1); ax.set_ylabel('grid intensity (gCO2/kWh)', fontsize=FS - 1)
+    ax.set_xlabel('hydro surplus → (firm/demand)', fontsize=FS - 1); ax.set_ylabel('marginal grid intensity (g CO$_2$eq/kWh)', fontsize=FS - 1)
     for sp in ['top', 'right']:
         ax.spines[sp].set_visible(False)
     for sp in ['left', 'bottom']:
