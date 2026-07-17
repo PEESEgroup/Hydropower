@@ -4,7 +4,7 @@
   <img src="intro.png" width="500" alt="Existing hydropower can firm 24/7 datacenter demand">
 </p>
 
-Cover picture credit: Khotso Mahonko @ Linkedin
+Cover picture credit: Lesotho Secures USD 6.2B Hydropower @ PowerGen Advancement
 
 This repository contains the code and the figure-ready data to reproduce the
 figures and headline results of the study, which evaluates how the **existing**
