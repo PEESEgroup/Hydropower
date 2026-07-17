@@ -1,8 +1,10 @@
 # Existing Hydropower Can Firm 24/7 AI Datacenter Demand
 
 <p align="center">
-  <img src="intro.png" width="760" alt="Existing hydropower can firm 24/7 datacenter demand">
+  <img src="intro.png" width="500" alt="Existing hydropower can firm 24/7 datacenter demand">
 </p>
+
+Cover picture credit: Khotso Mahonko @ Linkedin
 
 This repository contains the code and the figure-ready data to reproduce the
 figures and headline results of the study, which evaluates how the **existing**
